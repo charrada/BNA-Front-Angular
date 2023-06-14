@@ -52,6 +52,8 @@ import { TachesFrontComponent } from './taches-front/taches-front.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ContratModule } from './Admin/Contrat/contrat.module';
 import { ReclaimModule } from './Admin/Reclaim/reclaim.module';
+import { FraisModule } from './Admin/BNA/Frais/frais.module';
+
 
 
 @NgModule({
@@ -75,8 +77,8 @@ import { ReclaimModule } from './Admin/Reclaim/reclaim.module';
         ForumComponent,
         // CreateEquipeComponent,
         NotFoundComponent,
-        TachesFrontComponent
-    ],  
+        TachesFrontComponent,
+          ],  
     providers: [EquipeService, ProjetService],
     bootstrap: [AppComponent],
     imports: [
@@ -116,7 +118,8 @@ import { ReclaimModule } from './Admin/Reclaim/reclaim.module';
         MatTooltipModule,
         DragDropModule,
         ContratModule,
-        ReclaimModule
+        ReclaimModule,
+        FraisModule
     ]
 })
 export class AppModule {}

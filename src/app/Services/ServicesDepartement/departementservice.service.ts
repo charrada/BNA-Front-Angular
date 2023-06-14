@@ -24,14 +24,14 @@ export class DepartementserviceService {
 
   
   updateDepartement(id: number, value: any): Observable<Object> {
-    return this.http.put(`http://localhost:8083/kaddem/Departement/updateDepartment/${id}`, value);
+    return this.http.put(`http://localhost:8083/bna/Departement/updateDepartment/${id}`, value);
   }
 
   getDepartement(id: number): Observable<Object> {
     return this.http.get(`${this.DepartementeAdminUrl}findDepartmentById/${id}`);
   }
   deleteDepartement(id:number):Observable<Object>{
-    return this.http.delete(`http://localhost:8083/kaddem/Departement/deleteDepartmentbyId?id=${id}`);
+    return this.http.delete(`http://localhost:8083/bna/Departement/deleteDepartmentbyId?id=${id}`);
   }
 
 }

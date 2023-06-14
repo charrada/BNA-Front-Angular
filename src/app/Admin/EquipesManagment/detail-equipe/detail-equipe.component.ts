@@ -21,7 +21,7 @@ export class DetailEquipeComponent implements OnInit {
       private router: Router,
       public dialog: MatDialog
   ) {}
-//http://localhost:8083/kaddem/images/2.jpg
+//http://localhost:8083/bna/images/2.jpg
   ngOnInit() {
     this.equipeService
         .getEquipe(this.route.snapshot.params.id)
@@ -29,7 +29,7 @@ export class DetailEquipeComponent implements OnInit {
             equipe => {
               this.equipe = equipe;
 console.log(this.equipe.image)
-              this.equipe.image = `http://localhost:8083/kaddem/images/${this
+              this.equipe.image = `http://localhost:8083/bna/images/${this
                   .equipe.image }`;
 
               this.failed = false;

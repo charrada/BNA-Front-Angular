@@ -27,7 +27,7 @@ equipes:any;
             equipe => {
               this.equipe2 = equipe;
 
-              this.equipe2.image = `http://localhost:8083/kaddem/images/${this
+              this.equipe2.image = `http://localhost:8083/bna/images/${this
                   .equipe2 && this.equipe2.image}`;
 
               this.failed = false;

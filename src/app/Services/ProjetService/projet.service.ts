@@ -11,7 +11,7 @@ export class ProjetService {
 
 
 
-  private getUrl: string= "http://localhost:8083/kaddem/Projet/";
+  private getUrl: string= "http://localhost:8083/bna/Projet/";
   constructor(private _httpClient: HttpClient) { }
  
   getProjets(pageNumber : number, size: number): Observable<Projet[]> {

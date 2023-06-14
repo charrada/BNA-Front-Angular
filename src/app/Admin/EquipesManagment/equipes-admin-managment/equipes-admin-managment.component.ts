@@ -97,7 +97,7 @@ this.equipeService.listesNonactivées().subscribe( (res:any)=>{
             equipe => {
               this.equipes = equipe;
               console.log(this.equipe.image)
-              this.equipe.image = `http://localhost:8083/kaddem/images/${this
+              this.equipe.image = `http://localhost:8083/bna/images/${this
                   .equipe.image }`;
 
               this.failed = false;
@@ -374,13 +374,13 @@ if(confirm("etes vous sure de changer la validité de cette equipe ?")){
   showModal(id: number) {
     this.equipe.idEquipe = id;
     this.e=this.equipeService.getEquipe(id);
-    // this.equipe.image = `http://localhost:8083/kaddem/images/${this
+    // this.equipe.image = `http://localhost:8083/bna/images/${this
     //                   .equipe.image }`;
     this.equipeService.getEquipe(id).subscribe( (data:Equipe)=>{
       this.e=data;
       console.log(this.e.nomEquipe)
       this.nomEquipe=this.e.nomEquipe;
-      this.image=`http://localhost:8083/kaddem/images/${this.e.image }`
+      this.image=`http://localhost:8083/bna/images/${this.e.image }`
      console.log("***********"+this.e.detailEquipe.idDetailEquipe);
       this.salle=this.e.detailEquipe.salle;
       this.nomResponsable=this.e.etudiant.nom

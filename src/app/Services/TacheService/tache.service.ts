@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TacheService {
-  private getUrl: string= "http://localhost:8083/kaddem/Tache/";
+  private getUrl: string= "http://localhost:8083/bna/Tache/";
   
   constructor(private _httpClient: HttpClient) { }
   loader= new BehaviorSubject<boolean>(true);

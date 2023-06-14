@@ -20,6 +20,11 @@ const routes: Routes = [
   {path: "Equipes",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
           import("./Admin/EquipesManagment/equipes-admin/equipes-admin.module").then((m) => m.EquipesAdminModule),},],
   },
+//zedtouuuuuuuu
+  {path: "Frais",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
+  import("./Admin/BNA/Frais/frais.module").then((m) => m.FraisModule),},],
+},
+
   {path: "Contrat",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
           import("./Admin/Contrat/contrat.module").then((m) => m.ContratModule),},],
   },

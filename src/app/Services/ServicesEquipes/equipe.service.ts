@@ -13,7 +13,7 @@ const httpOptions = {
 };
 const equipesUrls = {
 
-  post: "http://localhost:8083/kaddem/equipe/",
+  post: "http://localhost:8083/bna/equipe/",
 
 };
 @Injectable({
@@ -25,7 +25,7 @@ export class EquipeService {
 
 
   constructor(private http: HttpClient) { 
-this.equipeAdminUrl="http://localhost:8083/kaddem/equipe"
+this.equipeAdminUrl="http://localhost:8083/bna/equipe"
 
   }
   public findAllEquipes(): Observable<Equipe> {
@@ -37,7 +37,7 @@ this.equipeAdminUrl="http://localhost:8083/kaddem/equipe"
 
 //@RequestParam String salle, @RequestParam String thematique, @RequestParam Integer nombreMaxParticipants, @RequestParam(name = "image",required = false) MultipartFile file
   public save(body:any) {
-    return this.http.post("http://localhost:8083/kaddem/equipe/AddEquipe2",body);
+    return this.http.post("http://localhost:8083/bna/equipe/AddEquipe2",body);
   }
   // return this.http.get<Tutorial[]>(`${baseUrl}?title=${title}`);
   postEquipe(body: any) :Observable<any>{
@@ -66,57 +66,57 @@ this.equipeAdminUrl="http://localhost:8083/kaddem/equipe"
 
 
   updateEquipe(id: number, value: any): Observable<Object> {
-    return this.http.put(`http://localhost:8083/kaddem/equipe/updateEquipe/${id}`, value);
+    return this.http.put(`http://localhost:8083/bna/equipe/updateEquipe/${id}`, value);
   }
 
   getEquipe(id: number): Observable<Object> {
-    //http://localhost:8083/kaddem/equipe/equipe/1
-    //http://localhost:8083/kaddem/equipe/equipe/168
+    //http://localhost:8083/bna/equipe/equipe/1
+    //http://localhost:8083/bna/equipe/equipe/168
     return this.http.get(`${this.equipeAdminUrl}/equipe/${id}`);
   }
   deleteEquipe(id:number):Observable<Object>{
- //   http://localhost:8083/kaddem/equipe/deleteEquipe/13
-    return this.http.delete(`http://localhost:8083/kaddem/equipe/deleteEquipe/${id}`);
+ //   http://localhost:8083/bna/equipe/deleteEquipe/13
+    return this.http.delete(`http://localhost:8083/bna/equipe/deleteEquipe/${id}`);
   }
 
   changeValidite(id:number):Observable<Object>{
-    //   http://localhost:8083/kaddem/equipe/deleteEquipe/13
+    //   http://localhost:8083/bna/equipe/deleteEquipe/13
 
 
-    return this.http.get(`http://localhost:8083/kaddem/equipe/changeV/${id}`);
+    return this.http.get(`http://localhost:8083/bna/equipe/changeV/${id}`);
   }
 
 
 listesNonactivées(){
-    return this.http.get(`http://localhost:8083/kaddem/equipe/nbEquipesDesactives`)
+    return this.http.get(`http://localhost:8083/bna/equipe/nbEquipesDesactives`)
 }
 equipesActivées(){
-    return this.http.get(`http://localhost:8083/kaddem/equipe/nbEquipesActives`)
+    return this.http.get(`http://localhost:8083/bna/equipe/nbEquipesActives`)
 }
 nbMembresParEquipe(id:number):Observable<Object>{
-    return this.http.get(`http://localhost:8083/kaddem/equipe/nbMembresParEquipes/${id}`)
+    return this.http.get(`http://localhost:8083/bna/equipe/nbMembresParEquipes/${id}`)
 }
   nbMembres():Observable<Object>{
-    return this.http.get(`http://localhost:8083/kaddem/equipe/nbMembresEquipes`)
+    return this.http.get(`http://localhost:8083/bna/equipe/nbMembresEquipes`)
   }
   nbEquipes():Observable<Object>{
-    return this.http.get(`http://localhost:8083/kaddem/equipe/nbEquipes`)
+    return this.http.get(`http://localhost:8083/bna/equipe/nbEquipes`)
   }
 getEtudiants():Observable<any>{
     return this.http.get(
-        `http://localhost:8083/kaddem/equipe/getEtudiantsNonResponsables`
-        // `http://localhost:8083/kaddem/Etudiant/`
+        `http://localhost:8083/bna/equipe/getEtudiantsNonResponsables`
+        // `http://localhost:8083/bna/Etudiant/`
     )
 }
   getAllEtudiants():Observable<any>{
     return this.http.get(
-        // `http://localhost:8083/kaddem/equipe/getEtudiantsNonResponsables`
-        `http://localhost:8083/kaddem/Etudiant/`
+        // `http://localhost:8083/bna/equipe/getEtudiantsNonResponsables`
+        `http://localhost:8083/bna/Etudiant/`
     )
   }
   sendMailToAdminDev(formdata: any) {
     return this.http
-        .post("http://localhost:8083/kaddem/equipe/SendMessageToAdminOfEquipes/", formdata)
+        .post("http://localhost:8083/bna/equipe/SendMessageToAdminOfEquipes/", formdata)
         // .pipe(retry(1), catchError(this.handleError));
   }
   addPushSubscriber(sub:any) {
@@ -127,30 +127,30 @@ getEtudiants():Observable<any>{
     return this.http.post('/api/newsletter', null);
   }
   getMembersEquipe(id:any){
-    return this.http.get("http://localhost:8083/kaddem/equipe/getMembers/"+id)
+    return this.http.get("http://localhost:8083/bna/equipe/getMembers/"+id)
   }
   deleteEtudiantFromEquipe(idEt:any,idEq){
-    return this.http.get("http://localhost:8083/kaddem/equipe/supprimerEtudiantFromEquipe/"+idEt+"/"+idEq)
+    return this.http.get("http://localhost:8083/bna/equipe/supprimerEtudiantFromEquipe/"+idEt+"/"+idEq)
   }
   deleteEtudiantPartielleFromEquipe(idet:any){
-    return this.http.post(`http://localhost:8083/kaddem/equipe/deleteEtudiantFromEquipe/`+idet,null);
+    return this.http.post(`http://localhost:8083/bna/equipe/deleteEtudiantFromEquipe/`+idet,null);
   }
   rajouterEtudiantToEquipe(idet:any){
-    return this.http.post(`http://localhost:8083/kaddem/equipe/ValiderEtudiant/`+idet,null);
+    return this.http.post(`http://localhost:8083/bna/equipe/ValiderEtudiant/`+idet,null);
   }
   ajouterMembreToEquipe(idEq:number,idEt:number){
-    return this.http.put("http://localhost:8083/kaddem/equipe/ajouterMembreEquipe/"+idEq+"/"+idEt,null)
+    return this.http.put("http://localhost:8083/bna/equipe/ajouterMembreEquipe/"+idEq+"/"+idEt,null)
   }
 
 
   getAll(request): Observable<any> {
     const params = request;
-    return this.http.get("http://localhost:8083/kaddem/equipe/getEquipeList/", {params});
+    return this.http.get("http://localhost:8083/bna/equipe/getEquipeList/", {params});
   }
-  //http://localhost:8083/kaddem/equipe/download
+  //http://localhost:8083/bna/equipe/download
   donloadExcel(){
 
-    return this.http.get("http://localhost:8083/kaddem/equipe/download",{
+    return this.http.get("http://localhost:8083/bna/equipe/download",{
         //responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
       responseType:  'blob',
     });

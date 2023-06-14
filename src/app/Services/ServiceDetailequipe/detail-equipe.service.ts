@@ -7,6 +7,6 @@ import {HttpClient} from '@angular/common/http';
 export class DetailEquipeService {
   private equipeAdminUrl: string;
   constructor(private http: HttpClient) {
-    this.equipeAdminUrl="http://localhost:8083/kaddem/equipe"
+    this.equipeAdminUrl="http://localhost:8083/bna/equipe"
   }
 }
