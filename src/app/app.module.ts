@@ -52,7 +52,6 @@ import { TachesFrontComponent } from './taches-front/taches-front.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ContratModule } from './Admin/Contrat/contrat.module';
 import { ReclaimModule } from './Admin/Reclaim/reclaim.module';
-import { FraisModule } from './Admin/BNA/Frais/frais.module';
 
 
 
@@ -78,6 +77,7 @@ import { FraisModule } from './Admin/BNA/Frais/frais.module';
         // CreateEquipeComponent,
         NotFoundComponent,
         TachesFrontComponent,
+        
           ],  
     providers: [EquipeService, ProjetService],
     bootstrap: [AppComponent],
@@ -119,7 +119,6 @@ import { FraisModule } from './Admin/BNA/Frais/frais.module';
         DragDropModule,
         ContratModule,
         ReclaimModule,
-        FraisModule
     ]
 })
 export class AppModule {}

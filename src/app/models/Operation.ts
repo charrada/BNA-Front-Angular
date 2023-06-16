@@ -4,7 +4,6 @@ export class operation{
 idAgent:number;
 description:string;
 dateF :Date;
-typeOperation:String;
 isValied:boolean;
  
 

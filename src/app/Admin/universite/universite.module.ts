@@ -11,14 +11,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AddUniversiteComponent } from './add-universite/add-universite.component';
 import { UpdateuniversiteComponent } from './updateuniversite/updateuniversite.component';
+import { AllFraisComponent } from './all-frais/all-frais.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AllUniversiteComponent,
     AddUniversiteComponent,
-    UpdateuniversiteComponent
+    UpdateuniversiteComponent,
+    AllFraisComponent,
+    
   ],
-  imports: [
+  imports: [    FormsModule, ReactiveFormsModule,
     CommonModule,
     UniversiteRoutingModule,
     FormsModule,
@@ -28,7 +32,7 @@ import { UpdateuniversiteComponent } from './updateuniversite/updateuniversite.c
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,NgxPaginationModule,
   ]
 })
 export class UniversiteModule { }

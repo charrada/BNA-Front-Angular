@@ -1,0 +1,60 @@
+<br> <br><br>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Other contents -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchId" placeholder="Enter ID..." class="search-input">
+      <button (click)="searchOperationById()" class="search-button">Trouver</button>
+    </div>
+
+
+    <div *ngIf="operations && operations.length > 0">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Frais eee</h4>
+          <p class="card-category">Tous les Frais</p>
+        </div>
+        <div class="card-body" id="sectionToPrint">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <th>ID</th>
+                <th>Montant</th>
+                <th>ID Agent</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Est valide</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let op of operations | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td>{{ op.idFrais }}</td>
+                  <td>{{ op.montant }}</td>
+                  <td>{{ op.idAgent }}</td>
+                  <td>{{ op.description }}</td>
+                  <td>{{ op.dateF | date }}</td>
+                  <td>{{ op.isValid }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+        
+    <!-- Pagination controls -->
+    <div class="pagination-controls" *ngIf="operations && operations.length > 0">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
