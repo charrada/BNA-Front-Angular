@@ -74,12 +74,11 @@
 
   
 
-    
- 
 
 
-    <div *ngIf="operations && operations.length > 0">
-      <div class="card">
+
+    <div  *ngIf="operations && operations.length > 0 && creditId !== null">
+        <div class="card">
         <div class="card-header card-header-danger">
           <h4 class="card-title">Frais</h4>
           <p class="card-category">Tous les Frais de credit de ID: {{this.creditId}} </p>

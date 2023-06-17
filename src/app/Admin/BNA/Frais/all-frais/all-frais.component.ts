@@ -28,4 +28,6 @@ export class AllFraisComponent implements OnInit {
       }
     );
   }
+
+  
 }

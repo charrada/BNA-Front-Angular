@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AddFraisComponent } from '../add-frais/add-frais.component';
 import { AddReclaimComponent } from 'app/Admin/Reclaim/add-reclaim/add-reclaim.component';
-import { Credit } from 'app/models/Credit';
+import { Credit } from 'app/models/Debiteur';
 
 @Component({
   selector: 'app-all-frais',
@@ -40,14 +40,21 @@ export class AllFraisComponent implements OnInit {
     );
   }
 
+
+
   //recherche des frais
   searchOperationById(creditId: number): void {
-this.creditId=creditId;
+    this.operations = []; // Reset operations array
+
+    this.creditId = creditId;
+  
     if (creditId) {
       this.operationService.findOperationsByCreditId(creditId).subscribe(
         operations => {
-          this.operations = operations;
-          console.log(operations); // Check the returned operations
+          if (operations.length) {
+            this.operations = operations;
+            console.log(operations); // Check the returned operations
+          }
         },
         error => {
           console.error(error);
@@ -56,9 +63,12 @@ this.creditId=creditId;
     }
   }
   
-
+  
+ 
+  
   //recherche des credit avec debiteur id
   searchCreditByDebId(): void {
+    this.searchOperationById(null);
     console.log("searchId:", this.searchId); // Check the value of searchId2
     if (this.searchId) {
       this.operationService.findCreditByDebiteurId(this.searchId).subscribe(
@@ -74,17 +84,6 @@ this.creditId=creditId;
   }
   
 
-
-  copyToClipboard(content: string): void {
-    navigator.clipboard.writeText(content)
-      .then(() => {
-        console.log('Content copied to clipboard:', content);
-      })
-      .catch((error) => {
-        console.error('Failed to copy content to clipboard:', error);
-      });
-  }
-  
 
 
 

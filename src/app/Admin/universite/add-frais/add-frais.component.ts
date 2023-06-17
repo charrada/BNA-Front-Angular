@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Credit } from 'app/models/Credit';
 import { operation } from 'app/models/Operation';
 import { OperationService } from 'app/Services/OperationService/operation.service';
 
@@ -40,8 +39,10 @@ export class AddFraisComponent implements OnInit {
     // Call the addOperation method of the OperationService
     this.operationService.addOperation(this.operation).subscribe(
       (response) => {
-        // Operation added successfully
+        this.onUpload(response.idFrais); //l apload 
+        
         console.log('Operation added:', response);
+        //houni bch naaml update fl upload! nhot feha id_operation
         this.dialogRef.close();
       },
       (error) => {
@@ -50,6 +51,7 @@ export class AddFraisComponent implements OnInit {
       }
     );
   }
+  
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -81,14 +83,16 @@ export class AddFraisComponent implements OnInit {
 
 
   //Gets called when the user clicks on submit to upload the image
-  onUpload() {
+  onUpload(Id: number) {
     console.log(this.selectedFile);
-    
-    //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+  
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
   
-    //Make a call to the Spring Boot Application to save the image
+    // Set the idOperation value in the FormData object
+
+    uploadImageData.append('idOperation', Id.toString() );
+  
     this.http.post('http://localhost:8083/bna/image/upload', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
@@ -96,11 +100,9 @@ export class AddFraisComponent implements OnInit {
         } else {
           this.message = 'Image not uploaded successfully';
         }
-      }
-      );
-
-
+      });
   }
+  
 
     //Gets called when the user clicks on retieve image button to get the image from back end
     getImage() {

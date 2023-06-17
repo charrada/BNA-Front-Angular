@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Credit } from 'app/models/Credit';
+import { Credit } from 'app/models/Debiteur';
 import { operation } from 'app/models/Operation';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
