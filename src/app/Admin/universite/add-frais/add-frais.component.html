@@ -21,8 +21,18 @@
     </div>
 
 
+    <mat-form-field appearance="fill">
+      <mat-label>Type de paiement</mat-label>
+      <mat-select [(ngModel)]="selectedOption" name="paymentType">
+        <mat-option *ngFor="let type of typePaiementOperations" [value]="type.nomType">{{ type.nomType }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>Option sélectionnée : {{ selectedOption }}</p>
+    
+
 
 <br><br>
+<div *ngIf="selectedOption === 'chéque'">
 
 <div class="container row">
     <div class="col-md-12">
@@ -38,6 +48,7 @@
     <br><br><br><br><p>&nbsp;</p><br>
  
     <br><br>
+</div>
 </div>
 <br><br>
 

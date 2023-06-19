@@ -29,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ImageFraisComponent } from './image-frais/image-frais.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UpdateuniversiteComponent,
     AllFraisComponent,
     AddFraisComponent,
+    ImageFraisComponent,
     
   ],
   imports: [    FormsModule, ReactiveFormsModule,

@@ -25,10 +25,6 @@ const routes: Routes = [
 
   
   
-//zedtouuuuuuuu routing module yezi!
-  {path: "Frais",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
-  import("./Admin/BNA/Frais/frais-routing.module").then((m) => m.FraisRoutingModule),},],
-},
 
 
 
@@ -52,7 +48,7 @@ const routes: Routes = [
           import("./Admin/UniversiteManegment/universite-Module/universite.module").then((m) => m.UniversiteModule),},],
   },
 */
-  {path: "Universite",component: AdminLayoutComponent,children: [{path: "",loadChildren: () =>
+  {path: "Frais",component: AdminLayoutComponent,children: [{path: "",loadChildren: () =>
           import("./Admin/universite/universite.module").then((m) => m.UniversiteModule),},],
   },
 

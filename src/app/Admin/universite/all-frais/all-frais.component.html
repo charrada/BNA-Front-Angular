@@ -92,14 +92,25 @@
                 <th>ID Agent</th>
                 <th>Description</th>
                 <th>Date</th>
+                <th>Type de paiement</th>
               </thead>
               <tbody>
                 <tr *ngFor="let op of operations | paginate: { itemsPerPage: 10, currentPage: p }">
-                  <td>{{ op.idFrais }}</td>
+                  <td>{{ op.idOperation }}</td>
                   <td>{{ op.montant }}</td>
                   <td>{{ op.idAgent }}</td>
                   <td>{{ op.description }}</td>
                   <td>{{ op.dateF | date }}</td>
+                 
+                  <td>
+                    <ng-container *ngIf="op.typePaiementOperation.idType === 1">
+                      <button mat-raised-button (click)="openImagePopup(op.idOperation)">Chéque</button>
+                    </ng-container>
+                    <ng-container *ngIf="op.typePaiementOperation.idType !==1">
+                      {{ op.typePaiementOperation.nomType }}
+                    </ng-container>
+                  </td>
+
                 </tr>
               </tbody>
             </table>
@@ -113,8 +124,12 @@
       </div>
       </div>
       
+      
     </div>
 
+
  
+  
+    
 </div>
 

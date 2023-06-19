@@ -4,12 +4,15 @@ import { AddUniversiteComponent } from './add-universite/add-universite.componen
 import { AllUniversiteComponent } from './all-universite/all-universite.component';
 import {UpdateuniversiteComponent} from './updateuniversite/updateuniversite.component';
 import { AllFraisComponent } from './all-frais/all-frais.component';
+import { ImageFraisComponent } from './image-frais/image-frais.component';
 
 const routes: Routes = [
-  {path:'', component:AllUniversiteComponent},
+  {path:'all', component:AllUniversiteComponent},
   {path:'add', component:AddUniversiteComponent},
   {path:'update/:idUniversite', component:UpdateuniversiteComponent},
-  {path:'all', component:AllFraisComponent},
+  {path:'', component:AllFraisComponent},
+  {path:'image', component:ImageFraisComponent},
+
 
 
 ];

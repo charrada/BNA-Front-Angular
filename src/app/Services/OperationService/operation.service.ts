@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Credit } from 'app/models/Debiteur';
 import { operation } from 'app/models/Operation';
+import { TypePaiementOperation } from 'app/models/TypePaiementOperation';
+
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
@@ -16,32 +18,23 @@ export class OperationService {
 
   constructor(private http: HttpClient) { }
 
- 
-
-
   public findAllOperation(): Observable<operation[]> {
     return this.http.get<operation[]>(this.url);
   }
 
-
   public findOperationsByCreditId(creditId: number): Observable<operation[]> {
-    return this.http.get<operation[]>(this.url +"credit/"+ creditId);
+    return this.http.get<operation[]>(this.url + 'credit/' + creditId);
   }
-
 
   public findCreditByDebiteurId(debiteurId: number): Observable<Credit[]> {
-    return this.http.get<Credit[]>(this.Burl +"credit/"+ debiteurId);
+    return this.http.get<Credit[]>(this.Burl + 'credit/' + debiteurId);
   }
 
-  
-
+  public findAllTypePaiementOperation(): Observable<TypePaiementOperation[]> {
+    return this.http.get<TypePaiementOperation[]>(this.Burl + 'TypeP/');
+  }
 
   public addOperation(operation: operation): Observable<operation> {
     return this.http.post<operation>(this.url + 'add', operation);
-  
-
   }
-  
- 
-  
 }

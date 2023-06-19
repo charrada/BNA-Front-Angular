@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { operation } from 'app/models/Operation';
+import { TypePaiementOperation } from 'app/models/TypePaiementOperation';
 import { OperationService } from 'app/Services/OperationService/operation.service';
 
 @Component({
@@ -12,14 +13,20 @@ import { OperationService } from 'app/Services/OperationService/operation.servic
 export class AddFraisComponent implements OnInit {
   creditId: number;
   operation: operation = {
-    idFrais: null,
+    idOperation: null,
     montant: 0,
     idAgent: 0,
     description: '',
     dateF: new Date(),
     credit: { idCredit: 0 }
-    ,imageUrl:null
+    ,imageUrl:null,
+    typePaiementOperation:{ 
+       idType:0,
+      nomType:''}
+
   };
+
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -31,15 +38,34 @@ export class AddFraisComponent implements OnInit {
     this.creditId = data.creditId;
     this.operation.credit.idCredit = this.creditId;
   }
-  
 
-  ngOnInit(): void {}
+  typePaiementOperations: TypePaiementOperation[] = [];
+
+
+  ngOnInit(): void {
+
+
+    this.operationService.findAllTypePaiementOperation().subscribe(
+      (typePaiementOperations) => {
+        this.typePaiementOperations = typePaiementOperations;
+        console.log('Type paiement operations:', typePaiementOperations);
+      },
+      (error) => {
+        // Handle the error
+        console.error('Error fetching type paiement operations:', error);
+      }
+    );
+    
+  }
 
   addOperation(): void {
     // Call the addOperation method of the OperationService
     this.operationService.addOperation(this.operation).subscribe(
       (response) => {
-        this.onUpload(response.idFrais); //l apload 
+        if(this.selectedOption=="chéque")
+        {        this.onUpload(response.idOperation); //l apload 
+
+        }
         
         console.log('Operation added:', response);
         //houni bch naaml update fl upload! nhot feha id_operation
@@ -62,7 +88,12 @@ export class AddFraisComponent implements OnInit {
 
 
 
+  selectedOption: string;
 
+  onSelectionChange(option: string) {
+    this.selectedOption = option;
+  }
+  
 
 
 
@@ -104,19 +135,7 @@ export class AddFraisComponent implements OnInit {
   }
   
 
-    //Gets called when the user clicks on retieve image button to get the image from back end
-    getImage() {
-    //Make a call to Sprinf Boot to get the Image Bytes.
-    this.http.get('http://localhost:8083/bna/image/get/' + this.imageName)
-      .subscribe(
-        res => {
-          this.retrieveResonse = res;
-          this.base64Data = this.retrieveResonse.picByte;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        }
-      );
-  }
-
+ 
 
 
 }

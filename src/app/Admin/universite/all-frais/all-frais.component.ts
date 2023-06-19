@@ -6,6 +6,8 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { AddFraisComponent } from '../add-frais/add-frais.component';
 import { AddReclaimComponent } from 'app/Admin/Reclaim/add-reclaim/add-reclaim.component';
 import { Credit } from 'app/models/Debiteur';
+import { HttpClient } from '@angular/common/http';
+import { ImageFraisComponent } from '../image-frais/image-frais.component';
 
 @Component({
   selector: 'app-all-frais',
@@ -20,12 +22,17 @@ export class AllFraisComponent implements OnInit {
 
   p: number = 1; // Page actuelle, initialisée à 1
 
-  constructor(private operationService: OperationService,private dialog: MatDialog) { }
 
+  constructor(
+    private operationService: OperationService,
+    private dialog: MatDialog,
+    private http: HttpClient // Inject HttpClient here
+  ) {}
 
 
   ngOnInit(): void {
  //   this.findAllOperations();
+ 
   }
 
   findAllOperations(): void {
@@ -39,6 +46,8 @@ export class AllFraisComponent implements OnInit {
       }
     );
   }
+
+
 
 
 
@@ -63,7 +72,11 @@ export class AllFraisComponent implements OnInit {
     }
   }
   
+
   
+
+
+    
  
   
   //recherche des credit avec debiteur id
@@ -100,6 +113,16 @@ export class AllFraisComponent implements OnInit {
 
 
 
+  openImagePopup(idOperation: number): void {
+    this.dialog.open(ImageFraisComponent, {
+      data: {
+        idOperation: idOperation
+      }
+    });
+  }
 
 
 }
+
+
+
