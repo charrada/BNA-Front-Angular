@@ -49,7 +49,7 @@ const routes: Routes = [
   },
 */
   {path: "Frais",component: AdminLayoutComponent,children: [{path: "",loadChildren: () =>
-          import("./Admin/universite/universite.module").then((m) => m.UniversiteModule),},],
+          import("./Admin/universite/frais.module").then((m) => m.UniversiteModule),},],
   },
 
   {path: "Departement",component: AdminLayoutComponent,children: [{path: "",loadChildren: () =>

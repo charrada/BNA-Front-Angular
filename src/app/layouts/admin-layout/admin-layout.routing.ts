@@ -6,8 +6,6 @@ import { TableListComponent } from '../../table-list/table-list.component';
 import { EquipesComponent } from 'app/Admin/equipes/equipes.component';
 import { ListThreadComponent } from 'app/Admin/Forum/Thread/list-thread/list-thread.component';
 
-import {EquipesAdminManagmentComponent} from '../../Admin/EquipesManagment/equipes-admin-managment/equipes-admin-managment.component';
-import { AddFraisComponent } from 'app/Admin/BNA/Frais/add-frais/add-frais.component';
 
 
 
@@ -18,8 +16,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'table-list',     component: TableListComponent },
     { path: 'Equipes',        component: EquipesComponent },
     { path: 'Forum',        component: ListThreadComponent },
-    { path: 'Frais',      component: AddFraisComponent },
-
 
 
 ];

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UniversiteRoutingModule } from './universite-routing.module';
-import { AllUniversiteComponent } from './all-universite/all-universite.component';
+import { UniversiteRoutingModule } from './frais-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
@@ -9,8 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AddUniversiteComponent } from './add-universite/add-universite.component';
-import { UpdateuniversiteComponent } from './updateuniversite/updateuniversite.component';
 import { AllFraisComponent } from './all-frais/all-frais.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddFraisComponent } from './add-frais/add-frais.component';
@@ -33,9 +30,6 @@ import { ImageFraisComponent } from './image-frais/image-frais.component';
 
 @NgModule({
   declarations: [
-    AllUniversiteComponent,
-    AddUniversiteComponent,
-    UpdateuniversiteComponent,
     AllFraisComponent,
     AddFraisComponent,
     ImageFraisComponent,

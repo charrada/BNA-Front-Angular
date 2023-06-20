@@ -28,7 +28,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { ConfirmDialogComponent } from "./Admin/EquipesManagment/confirm-dialog/confirm-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
-import { UniversiteModule } from './Admin/universite/universite.module'; 
+import { UniversiteModule } from './Admin/universite/frais.module'; 
 // import { DetailEquipeAdminManagmentComponent } from "./Admin/EquipesManagment/detail-equipe-admin-managment/detail-equipe-admin-managment.component";
 import { UniversiteserviceService } from "./Services/ServicesUniversite/universiteservice.service";
 import { AddEquipeComponent } from "./Admin/EquipesManagment/add-equipe/add-equipe.component";
