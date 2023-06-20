@@ -74,7 +74,24 @@ export class AllFraisComponent implements OnInit {
   
 
   
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
 
+     //Gets called when the user clicks on retieve image button to get the image from back end
+     getImage(idOp :number) {
+      //Make a call to Sprinf Boot to get the Image Bytes.
+      this.http.get('http://localhost:8083/bna/image/get/' +idOp)
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = this.retrieveResonse.picByte;
+            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          }
+        );
+    }
 
     
  

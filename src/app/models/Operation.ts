@@ -12,4 +12,13 @@ export class operation {
     idType: number;
     nomType: string;
   };
+
+
+    numC: number;
+  
+
+ 
+    ribV: number;
+  
+
 }

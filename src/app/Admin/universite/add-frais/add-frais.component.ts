@@ -18,12 +18,18 @@ export class AddFraisComponent implements OnInit {
     idAgent: 0,
     description: '',
     dateF: new Date(),
-    credit: { idCredit: 0 }
-    ,imageUrl:null,
-    typePaiementOperation:{ 
-       idType:0,
-      nomType:''}
-
+    credit: { idCredit: 0 },
+    imageUrl: null,
+    typePaiementOperation: { 
+      idType: null,
+      nomType: ''
+    },
+ 
+      numC: null
+    ,
+ 
+      ribV: null
+    
   };
 
 
@@ -62,22 +68,30 @@ export class AddFraisComponent implements OnInit {
     // Call the addOperation method of the OperationService
     this.operationService.addOperation(this.operation).subscribe(
       (response) => {
-        if(this.selectedOption=="chéque")
-        {        this.onUpload(response.idOperation); //l apload 
-
+        this.operation.idOperation = response.idOperation; // Set the idOperation value
+        if (this.operation.typePaiementOperation.idType === 1) {
+          this.onUpload(response.idOperation); // Upload the image
         }
-        
         console.log('Operation added:', response);
-        //houni bch naaml update fl upload! nhot feha id_operation
         this.dialogRef.close();
       },
       (error) => {
-        // Handle the error
         console.error('Error adding operation:', error);
       }
     );
   }
   
+  
+  isFormValid(): boolean {
+    return !this.isFieldInvalid('montant') && !this.isFieldInvalid('idAgent') && !this.isFieldInvalid('description');
+  }
+
+
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.operation[fieldName];
+    return field === null || field === undefined || field === '';
+  }
+
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -88,9 +102,9 @@ export class AddFraisComponent implements OnInit {
 
 
 
-  selectedOption: string;
+  selectedOption: number;
 
-  onSelectionChange(option: string) {
+  onSelectionChange(option: number) {
     this.selectedOption = option;
   }
   

@@ -93,6 +93,8 @@
                 <th>Description</th>
                 <th>Date</th>
                 <th>Type de paiement</th>
+                <th>Détails</th>
+
               </thead>
               <tbody>
                 <tr *ngFor="let op of operations | paginate: { itemsPerPage: 10, currentPage: p }">
@@ -110,6 +112,26 @@
                       {{ op.typePaiementOperation.nomType }}
                     </ng-container>
                   </td>
+
+                  <td>
+
+                      <ng-container *ngIf="op.ribV">
+                        N° RIB: {{ op.ribV }}
+                      </ng-container>
+                      <ng-container *ngIf="op.numC">
+                        N° Chéque: {{ op.numC }}
+                      </ng-container>
+                    <ng-container *ngIf="(op.numC==null && op.ribV==null)">
+                      ----------------------------
+                    </ng-container>
+                    
+                    
+                    
+                    
+                   
+
+                  </td>
+
 
                 </tr>
               </tbody>
