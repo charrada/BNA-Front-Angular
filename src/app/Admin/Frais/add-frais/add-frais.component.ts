@@ -34,6 +34,8 @@ export class AddFraisComponent implements OnInit {
       typePieceEnregistrement:null,
       typeTimbrage:null,
       numAffaireAuxiliaire:null,
+          idAuxOperation:null,
+
     },
   };
 

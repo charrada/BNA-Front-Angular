@@ -27,6 +27,9 @@ export class operation {
       typePieceEnregistrement:string;
       typeTimbrage:string;
       numAffaireAuxiliaire:number;
+      idAuxOperation:number;
+
     };
+
 
 }

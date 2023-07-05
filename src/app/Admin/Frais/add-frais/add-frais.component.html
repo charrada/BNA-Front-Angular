@@ -33,9 +33,9 @@
   <div *ngIf="selectedType === 'Auxiliaire'">
     <mat-form-field>
       <mat-label>N° Affaire:</mat-label>
-      <input matInput type="text">
+      <input matInput type="text" [(ngModel)]="operation.detailsOperation.numAffaireAuxiliaire">
     </mat-form-field>
-
+  
     <mat-form-field appearance="fill">
       <mat-label>Type Auxiliaire</mat-label>
       <mat-select [(ngModel)]="selectedTypeAux" (ngModelChange)="typeAux(selectedTypeAux)">
@@ -44,19 +44,16 @@
         <mat-option value="Expert">Expert</mat-option>
       </mat-select>
     </mat-form-field>
-
-
-        <mat-form-field appearance="fill">
-          <mat-label>Liste des {{selectedTypeAux}}</mat-label>
-          <mat-select [(ngModel)]="selectedTypeAux" >
-            <mat-option *ngFor="let tAux of tAuxs" [value]="tAux">
-              {{ tAux.nomAux }} {{ tAux.prenAux }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      
+    <mat-form-field appearance="fill">
+      <mat-label>Liste des {{selectedTypeAux}}</mat-label>
+      <mat-select [(ngModel)]="operation.detailsOperation.idAuxOperation"> 
+        <mat-option *ngFor="let tAux of tAuxs" [value]="tAux.idAux">
+          {{ tAux.nomAux }} {{ tAux.prenAux }}{{ tAux.idAux }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-
+  
   <div *ngIf="selectedType === 'Timbrage'">
     <mat-form-field appearance="fill">
       <mat-label>Timbrage</mat-label>
