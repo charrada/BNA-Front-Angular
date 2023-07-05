@@ -21,17 +21,12 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatSelectModule } from "@angular/material/select";
 import { MatChipsModule } from "@angular/material/chips";
 import { EquipesAdminModule } from "./Admin/EquipesManagment/equipes-admin/equipes-admin.module";
-import { EquipesAdminManagmentComponent } from "./Admin/EquipesManagment/equipes-admin-managment/equipes-admin-managment.component";
-import { UpdateEquipeComponent } from "./Admin/EquipesManagment/update-equipe/update-equipe.component";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { ConfirmDialogComponent } from "./Admin/EquipesManagment/confirm-dialog/confirm-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
-import { UniversiteModule } from './Admin/universite/frais.module'; 
-// import { DetailEquipeAdminManagmentComponent } from "./Admin/EquipesManagment/detail-equipe-admin-managment/detail-equipe-admin-managment.component";
-import { UniversiteserviceService } from "./Services/ServicesUniversite/universiteservice.service";
-import { AddEquipeComponent } from "./Admin/EquipesManagment/add-equipe/add-equipe.component";
+import { FraisModule } from './Admin/Frais/frais.module'; 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
  import { CreateThreadComponent } from "./Admin/Forum/Thread/create-thread/create-thread.component";
 import { UpdateThreadComponent } from "./Admin/Forum/Thread/update-thread/update-thread.component";
@@ -109,7 +104,7 @@ import { ReclaimModule } from './Admin/Reclaim/reclaim.module';
         MatDialogModule,
         MatTableModule,
         MatInputModule,
-        UniversiteModule,
+        FraisModule,
         ProjetsModule,
         MatCardModule,     
         ProjetsModule,  

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UniversiteRoutingModule } from './frais-routing.module';
+import { FraisRoutingModule } from './frais-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
@@ -37,7 +37,7 @@ import { ImageFraisComponent } from './image-frais/image-frais.component';
   ],
   imports: [    FormsModule, ReactiveFormsModule,
     CommonModule,
-    UniversiteRoutingModule,
+    FraisRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -83,4 +83,4 @@ import { ImageFraisComponent } from './image-frais/image-frais.component';
 
   ]
 })
-export class UniversiteModule { }
+export class FraisModule { }

@@ -2,9 +2,9 @@ export class operation {
   idOperation: number;
   montant: number;
   idAgent: number;
-  description: string;
   dateF: Date;
   imageUrl: string;
+  typeOperation:string;
   credit: {
     idCredit: number;
   };
@@ -20,5 +20,13 @@ export class operation {
  
     ribV: number;
   
+    detailsOperation: {
+      idDetails:number;
+      typeDetails:string;
+      numPieceEnregistrement:number;
+      typePieceEnregistrement:string;
+      typeTimbrage:string;
+      numAffaireAuxiliaire:number;
+    };
 
 }

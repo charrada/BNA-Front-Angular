@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuxiliaireOperation } from 'app/models/AuxiliaireOperation';
 import { Credit } from 'app/models/Debiteur';
+
 import { operation } from 'app/models/Operation';
 import { TypePaiementOperation } from 'app/models/TypePaiementOperation';
 
@@ -37,4 +39,12 @@ export class OperationService {
   public addOperation(operation: operation): Observable<operation> {
     return this.http.post<operation>(this.url + 'add', operation);
   }
+
+
+
+
+  public findAuxiliaireOperationByType(type: string): Observable<AuxiliaireOperation[]> {
+    return this.http.get<AuxiliaireOperation[]>(this.Burl + 'aux/type/' + type);
+  }
+
 }

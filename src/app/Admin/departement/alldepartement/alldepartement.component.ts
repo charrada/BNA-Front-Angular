@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { DepartementserviceService } from 'app/Services/ServicesDepartement/departementservice.service';
-import {Universite} from '../../../models/Universite';
 import {MatTableDataSource} from '@angular/material/table';
 import {Departement} from '../../../models/Departement';
 import {DOCUMENT} from '@angular/common';

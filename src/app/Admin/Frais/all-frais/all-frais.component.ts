@@ -52,26 +52,30 @@ export class AllFraisComponent implements OnInit {
 
 
   //recherche des frais
-  searchOperationById(creditId: number): void {
-    this.operations = []; // Reset operations array
+searchOperationById(creditId: number): void {
+  this.operations = []; // Reset operations array
 
-    this.creditId = creditId;
-  
-    if (creditId) {
-      this.operationService.findOperationsByCreditId(creditId).subscribe(
-        operations => {
-          if (operations.length) {
-            this.operations = operations;
-            console.log(operations); // Check the returned operations
-          }
-        },
-        error => {
-          console.error(error);
+  this.creditId = creditId;
+
+  if (creditId) {
+    this.operationService.findOperationsByCreditId(creditId).subscribe(
+      operations => {
+        if (operations.length) {
+          
+//nafs esm bd !!?? pourle filtre
+          // Filter operations by TypeOperation equal to "frais"
+          this.operations = operations.filter(operation => operation.typeOperation === "Frais");
+          
+          console.log(this.operations); // Check the filtered operations
         }
-      );
-    }
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
-  
+}
+
 
   
   selectedFile: File;

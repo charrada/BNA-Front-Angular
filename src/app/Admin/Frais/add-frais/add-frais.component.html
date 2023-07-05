@@ -1,0 +1,142 @@
+<mat-dialog-content  class="bigger-dialog-content"  (keyup.escape)="closeDialog()">
+  <p>Ajouter Frais au crédit de ID: {{ creditId }}</p>
+  <h2>Ajouter Frais</h2>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Montant:</mat-label>
+      <input matInput type="number" [(ngModel)]="operation.montant" name="montant" required>
+      <mat-error *ngIf="isFieldInvalid('montant')">Montant est requis.</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>ID Agent:</mat-label>
+      <input matInput type="number" [(ngModel)]="operation.idAgent" name="idAgent" required>
+      <mat-error *ngIf="isFieldInvalid('idAgent')">ID Agent est requis.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Type de Frais</mat-label>
+      <mat-select [(ngModel)]="selectedType" [(ngModel)]="operation.detailsOperation.typeDetails">
+        <mat-option value="Auxiliaire">Auxiliaire</mat-option>
+        <mat-option value="Timbrage">Timbrage</mat-option>
+        <mat-option value="Enregistrement">Enregistrement</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <p>Selected option: {{ selectedType }}</p>
+
+  <div *ngIf="selectedType === 'Auxiliaire'">
+    <mat-form-field>
+      <mat-label>N° Affaire:</mat-label>
+      <input matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type Auxiliaire</mat-label>
+      <mat-select [(ngModel)]="selectedTypeAux" (ngModelChange)="typeAux(selectedTypeAux)">
+        <mat-option value="Avocat">Avocat</mat-option>
+        <mat-option value="Huissier">Huissier</mat-option>
+        <mat-option value="Expert">Expert</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Liste des {{selectedTypeAux}}</mat-label>
+          <mat-select [(ngModel)]="selectedTypeAux" >
+            <mat-option *ngFor="let tAux of tAuxs" [value]="tAux">
+              {{ tAux.nomAux }} {{ tAux.prenAux }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+  </div>
+
+  <div *ngIf="selectedType === 'Timbrage'">
+    <mat-form-field appearance="fill">
+      <mat-label>Timbrage</mat-label>
+      <mat-select [(ngModel)]="operation.detailsOperation.typeTimbrage">
+        <mat-option value="Effet">Effet</mat-option>
+        <mat-option value="Jugement">Jugement</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  
+
+  <div *ngIf="selectedType === 'Enregistrement'">
+    <mat-form-field>
+      <mat-label>N° Piece:</mat-label>
+      <input matInput type="text" [(ngModel)]="operation.detailsOperation.numPieceEnregistrement">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Type Piece</mat-label>
+      <mat-select [(ngModel)]="operation.detailsOperation.typePieceEnregistrement">
+        <mat-option value="contrat">contrat de pret</mat-option>
+        <mat-option value="effet">Effet</mat-option>
+        <mat-option value="action">Action de caution</mat-option>
+        <mat-option value="jugement">Jugement</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  
+
+  <mat-form-field appearance="fill">
+    <mat-label>Type de paiement</mat-label>
+    <mat-select [(ngModel)]="operation.typePaiementOperation.idType" name="paymentType">
+      <mat-option *ngFor="let type of typePaiementOperations" [value]="type.idType">{{ type.nomType }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Option sélectionnée : {{ operation.typePaiementOperation.idType }}</p>
+
+  <div *ngIf="operation.typePaiementOperation.idType === 1">
+    <br>
+    <div class="container row">
+      <input type="file" (change)="onFileChanged($event)">
+      <br>
+      <mat-form-field>
+        <mat-label>Numéro de Chéque:</mat-label>
+        <input matInput type="number" [(ngModel)]="operation.numC" name="numC" required>
+        <mat-error *ngIf="isFieldInvalid('numC')">Numéro de Chéque est requis.</mat-error>
+      </mat-form-field>
+    </div>
+    <br><br>
+  </div>
+
+  <div *ngIf="operation.typePaiementOperation.idType === 2">
+    <br>
+    <div class="container row">
+      <br>
+      <mat-form-field>
+        <mat-label>Numéro de Rib:</mat-label>
+        <input matInput type="number" [(ngModel)]="operation.ribV" name="ribV" required>
+        <mat-error *ngIf="isFieldInvalid('ribV')">Numéro de Rib est requis.</mat-error>
+      </mat-form-field>
+    </div>
+    <br><br>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" (click)="addOperation()">Ajouter</button>
+  <button mat-button color="warn" (click)="closeDialog()">Annuler</button>
+</mat-dialog-actions>
+
+
+
+
+
+
+
+
+
+
+

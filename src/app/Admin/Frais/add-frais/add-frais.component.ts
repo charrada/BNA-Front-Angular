@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AuxiliaireOperation } from 'app/models/AuxiliaireOperation';
 import { operation } from 'app/models/Operation';
 import { TypePaiementOperation } from 'app/models/TypePaiementOperation';
 import { OperationService } from 'app/Services/OperationService/operation.service';
@@ -16,7 +17,6 @@ export class AddFraisComponent implements OnInit {
     idOperation: null,
     montant: 0,
     idAgent: 0,
-    description: '',
     dateF: new Date(),
     credit: { idCredit: 0 },
     imageUrl: null,
@@ -24,15 +24,25 @@ export class AddFraisComponent implements OnInit {
       idType: null,
       nomType: ''
     },
- 
-      numC: null
-    ,
- 
-      ribV: null
-    
+    numC: null,
+    ribV: null,
+    typeOperation: "Frais",
+    detailsOperation: { 
+      idDetails:null,
+      typeDetails:null,
+      numPieceEnregistrement:null,
+      typePieceEnregistrement:null,
+      typeTimbrage:null,
+      numAffaireAuxiliaire:null,
+    },
   };
 
 
+
+
+
+
+  selectedType: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -49,8 +59,7 @@ export class AddFraisComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
+    
     this.operationService.findAllTypePaiementOperation().subscribe(
       (typePaiementOperations) => {
         this.typePaiementOperations = typePaiementOperations;
@@ -61,7 +70,8 @@ export class AddFraisComponent implements OnInit {
         console.error('Error fetching type paiement operations:', error);
       }
     );
-    
+
+
   }
 
   addOperation(): void {
@@ -86,32 +96,20 @@ export class AddFraisComponent implements OnInit {
     return !this.isFieldInvalid('montant') && !this.isFieldInvalid('idAgent') && !this.isFieldInvalid('description');
   }
 
-
   isFieldInvalid(fieldName: string): boolean {
     const field = this.operation[fieldName];
     return field === null || field === undefined || field === '';
   }
 
-
   closeDialog(): void {
     this.dialogRef.close();
   }
-
-
-
-
-
 
   selectedOption: number;
 
   onSelectionChange(option: number) {
     this.selectedOption = option;
   }
-  
-
-
-
-
 
   selectedFile: File;
   retrievedImage: any;
@@ -120,14 +118,16 @@ export class AddFraisComponent implements OnInit {
   message: string;
   imageName: any;
 
-  //Gets called when the user selects an image
+  // Gets called when the user selects an image
   public onFileChanged(event) {
-    //Select File
+    // Select File
     this.selectedFile = event.target.files[0];
   }
 
 
-  //Gets called when the user clicks on submit to upload the image
+
+
+  // Gets called when the user clicks on submit to upload the image
   onUpload(Id: number) {
     console.log(this.selectedFile);
   
@@ -135,8 +135,7 @@ export class AddFraisComponent implements OnInit {
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
   
     // Set the idOperation value in the FormData object
-
-    uploadImageData.append('idOperation', Id.toString() );
+    uploadImageData.append('idOperation', Id.toString());
   
     this.http.post('http://localhost:8083/bna/image/upload', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
@@ -149,7 +148,36 @@ export class AddFraisComponent implements OnInit {
   }
   
 
+ //-------------------
+
  
+ typeAux(selectedTypeAux:string){
+
+  this.fetchTypeAux(selectedTypeAux);
+}
+
+
+  tAuxs: any[]; 
+  fetchTypeAux(type:string): void {
+    this.http.get<AuxiliaireOperation[]>('http://localhost:8083/bna/aux/type/'+type)
+      .subscribe(
+        (response) => {
+          this.tAuxs = response;
+          console.log('Types:', this.tAuxs);
+        },
+        (error) => {
+          console.error('Error fetching Types:', error);
+        }
+      );
+  }
+  //----------------------
 
 
 }
+
+
+
+
+
+
+
