@@ -27,12 +27,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ImageFraisComponent } from './image-frais/image-frais.component';
+import { DetailsFraisComponent } from './details-frais/details-frais.component';
 
 @NgModule({
   declarations: [
     AllFraisComponent,
     AddFraisComponent,
     ImageFraisComponent,
+    DetailsFraisComponent,
     
   ],
   imports: [    FormsModule, ReactiveFormsModule,

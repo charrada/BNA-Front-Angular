@@ -5,6 +5,8 @@ export class operation {
   dateF: Date;
   imageUrl: string;
   typeOperation:string;
+  etatOperation:string;
+
   credit: {
     idCredit: number;
   };

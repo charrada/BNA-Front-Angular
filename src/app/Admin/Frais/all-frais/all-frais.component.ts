@@ -8,6 +8,7 @@ import { AddReclaimComponent } from 'app/Admin/Reclaim/add-reclaim/add-reclaim.c
 import { Credit } from 'app/models/Debiteur';
 import { HttpClient } from '@angular/common/http';
 import { ImageFraisComponent } from '../image-frais/image-frais.component';
+import { DetailsFraisComponent } from '../details-frais/details-frais.component';
 
 @Component({
   selector: 'app-all-frais',
@@ -31,21 +32,9 @@ export class AllFraisComponent implements OnInit {
 
 
   ngOnInit(): void {
- //   this.findAllOperations();
  
   }
 
-  findAllOperations(): void {
-    this.operationService.findAllOperation().subscribe(
-      operations => {
-        this.operations = operations;
-        console.log(operations);
-      },
-      error => {
-        console.error(error);
-      }
-    );
-  }
 
 
 
@@ -74,6 +63,9 @@ searchOperationById(creditId: number): void {
       }
     );
   }
+
+
+
 }
 
 
@@ -99,7 +91,7 @@ searchOperationById(creditId: number): void {
 
     
  
-  
+  NomPren:string;
   //recherche des credit avec debiteur id
   searchCreditByDebId(): void {
     this.searchOperationById(null);
@@ -115,6 +107,8 @@ searchOperationById(creditId: number): void {
         }
       );
     }
+
+
   }
   
 
@@ -134,14 +128,36 @@ searchOperationById(creditId: number): void {
 
 
 
-  openImagePopup(idOperation: number): void {
+  openImagePopup(operation: operation): void {
     this.dialog.open(ImageFraisComponent, {
-      data: {
-        idOperation: idOperation
-      }
+      data: { operation: operation }
+
     });
   }
 
+
+  openDetailsPopup(operation: operation): void {
+    this.dialog.open(DetailsFraisComponent, {
+      data: { operation: operation }
+    });
+  }
+  
+
+
+
+  debs: any[]; 
+  fetchDebiteurs(id:number): void {
+    this.http.get<any>('http://localhost:8083/bna/deb/'+id)
+      .subscribe(
+        (response) => {
+          this.debs = response;
+          console.log('Result:', this.debs);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
 
 }
 

@@ -21,37 +21,53 @@
 
   
     
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Credit N°</th>
-            <th>Id Credit</th>
-            <th>Montant</th>
-            <th> <div >
-                <input type="text" [(ngModel)]="searchId" placeholder="Enter debiteur ID..." (keyup.enter)="searchCreditByDebId()"  class="search-input">
-                <button (click)="searchCreditByDebId()" class="search-button">Trouver 🔍</button>
-              </div></th>
-              <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let credit of credits; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ credit.idCredit }}</td>
-              <td>{{credit.montant}}</td>
-              <td>
-                <div class="search-container">
-                    <button mat-raised-button color="warn" (click)="searchOperationById(credit.idCredit)">Frais 🔍</button>
-                  </div>              </td>
-              <td>
-                <div class="text-right">
-                    <button class="btn btn-primary" (click)="openAjout(credit.idCredit)">➕ Ajouter Frais</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-              </td>
-            </tr>
-          </tbody>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Credit N°</th>
+        <th>Id Credit</th>
+        <th>Montant</th>
+        <th>
+          <div>
+            <input type="text" [(ngModel)]="searchId" placeholder="Enter debiteur ID..." (keyup.enter)="searchCreditByDebId()" class="search-input">
+            <button (click)="searchCreditByDebId()" class="search-button">Trouver 🔍</button>
+          </div>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let credit of credits; let i = index">
+        <tr>
+          <td>
+            <ng-container *ngIf="i === 0">
+              <p [style.color]="'green'">🦋 {{ credit.debiteur.nom }} {{ credit.debiteur.prenom }}</p>
+              <br><br><br><br>
+            </ng-container>
+          </td>
           
-      </table>
+          
+          <td>{{ i + 1 }} </td>
+          <td>{{ credit.idCredit }}</td>
+          <td> {{ credit.montant }}
+          
+          </td>
+          <td>
+            <div class="search-container">
+              <button mat-raised-button color="warn" (click)="searchOperationById(credit.idCredit)">Frais 🔍</button>
+            </div>
+          </td>
+          <td>
+            <div class="text-right">
+              <button class="btn btn-primary" (click)="openAjout(credit.idCredit)">➕ Ajouter Frais</button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  
 
  </div>
   
@@ -91,8 +107,9 @@
                 <th>Montant</th>
                 <th>ID Agent</th>
                 <th>Date</th>
-                <th>Type de paiement</th>
-                <th>Détails</th>
+                <th>Type Operation</th>
+                <th>Type de paiement </th>
+                <th>Etat</th>
 
               </thead>
               <tbody>
@@ -102,34 +119,24 @@
                   <td>{{ op.montant }}</td>
                   <td>{{ op.idAgent }}</td>
                   <td>{{ op.dateF | date }}</td>
+                  <td><button mat-raised-button (click)="openDetailsPopup(op)" >{{ op.detailsOperation.typeDetails }}  </button>
+                  </td>
+
                  
                   <td>
-                    <ng-container *ngIf="op.typePaiementOperation.idType === 1">
-                      <button mat-raised-button (click)="openImagePopup(op.idOperation)">Chéque</button>
+                    <ng-container *ngIf="op.typePaiementOperation.idType !==3">
+
+                      <button mat-raised-button (click)="openImagePopup(op)">{{ op.typePaiementOperation.nomType }}</button>
+
                     </ng-container>
-                    <ng-container *ngIf="op.typePaiementOperation.idType !==1">
+
+
+                    <ng-container *ngIf="op.typePaiementOperation.idType ==3">
                       {{ op.typePaiementOperation.nomType }}
                     </ng-container>
                   </td>
 
-                  <td>
-
-                      <ng-container *ngIf="op.ribV">
-                        N° RIB: {{ op.ribV }}
-                      </ng-container>
-                      <ng-container *ngIf="op.numC">
-                        N° Chéque: {{ op.numC }}
-                      </ng-container>
-                    <ng-container *ngIf="(op.numC==null && op.ribV==null)">
-                      ----------------------------
-                    </ng-container>
-                    
-                    
-                    
-                    
-                   
-
-                  </td>
+                 <td>                      {{ op.etatOperation }}                </td>
 
 
                 

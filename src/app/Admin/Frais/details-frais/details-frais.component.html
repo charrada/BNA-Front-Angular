@@ -1,0 +1,40 @@
+<mat-dialog-content    (keyup.escape)="closeDialog()">
+
+<p>{{ operation.detailsOperation.typeDetails }} : {{operation.idOperation}}</p>
+
+<div *ngIf="operation.detailsOperation.typeDetails==='Enregistrement'">
+<p>Type de piece:</p>
+
+<p>{{ operation.detailsOperation.typePieceEnregistrement }}</p>
+
+<p>Num piece enregistrement:</p>
+<p>{{ operation.detailsOperation.numPieceEnregistrement }}</p>
+    </div>
+
+    <div *ngIf="operation.detailsOperation.typeDetails==='Timbrage'">
+        <p>Type:</p>
+        <p>{{ operation.detailsOperation.typeTimbrage }}</p>
+
+
+
+            </div>
+
+            <div *ngIf="operation.detailsOperation.typeDetails==='Auxiliaire'">
+
+                <p>Num Affaire:{{ operation.detailsOperation.numAffaireAuxiliaire }}</p>
+
+                <p>Type: {{auxs.typeAux}}</p>
+
+                <p>Nom: {{auxs.nomAux}}</p>
+                <p>Prenom:{{auxs.prenAux}}</p>
+
+
+
+
+                    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button color="warn" (click)="closeDialog()">Fermer</button>
+</mat-dialog-actions>

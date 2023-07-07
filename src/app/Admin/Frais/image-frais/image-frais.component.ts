@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
+import { operation } from 'app/models/Operation';
 
 @Component({
   selector: 'app-image-frais',
@@ -9,19 +10,20 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./image-frais.component.scss']
 })
 export class ImageFraisComponent implements OnInit {
+  operation: operation;
+
   constructor(
     public dialogRef: MatDialogRef<ImageFraisComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog,
     private http: HttpClient // Inject HttpClient here
   ) {
-    this.OperationId = data.idOperation;
+    this.operation = data.operation;
   }
 
-  OperationId: number;
 
   ngOnInit(): void {
-    this.getImage(this.OperationId);
+    this.getImage(this.operation.idOperation);
   }
 
   closeDialog(): void {

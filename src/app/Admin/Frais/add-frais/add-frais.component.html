@@ -48,7 +48,7 @@
       <mat-label>Liste des {{selectedTypeAux}}</mat-label>
       <mat-select [(ngModel)]="operation.detailsOperation.idAuxOperation"> 
         <mat-option *ngFor="let tAux of tAuxs" [value]="tAux.idAux">
-          {{ tAux.nomAux }} {{ tAux.prenAux }}{{ tAux.idAux }}
+          {{ tAux.idAux }}- {{ tAux.nomAux }} {{ tAux.prenAux }}
         </mat-option>
       </mat-select>
     </mat-form-field>
