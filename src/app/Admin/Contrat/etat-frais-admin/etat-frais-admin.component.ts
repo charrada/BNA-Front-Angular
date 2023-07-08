@@ -67,6 +67,8 @@ export class EtatFraisAdminComponent implements OnInit {
 
 
   updateEtat(): void {
+    if(this.selectedEtat!==this.operation.etatOperation)
+    {
     this.http.put<operation>('http://localhost:8083/bna/operation/changeEtat/' + this.operation.idOperation + '/' + this.selectedEtat, {
 
     
@@ -91,7 +93,7 @@ export class EtatFraisAdminComponent implements OnInit {
           // You can display an error message or perform other actions based on the error
         }
       );
-
+    }
  
 
   }
