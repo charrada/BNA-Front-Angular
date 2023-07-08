@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuxiliaireOperation } from 'app/models/AuxiliaireOperation';
-import { Credit } from 'app/models/Debiteur';
+import { Credit } from 'app/models/Credit';
 
 import { operation } from 'app/models/Operation';
 import { TypePaiementOperation } from 'app/models/TypePaiementOperation';

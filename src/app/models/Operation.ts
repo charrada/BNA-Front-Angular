@@ -9,6 +9,12 @@ export class operation {
 
   credit: {
     idCredit: number;
+    montant:number;
+    debiteur:{
+      idDebiteur:number;
+      nom:string;
+      prenom:string;
+    }
   };
   typePaiementOperation: {
     idType: number;

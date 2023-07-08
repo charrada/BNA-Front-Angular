@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AddFraisComponent } from '../add-frais/add-frais.component';
 import { AddReclaimComponent } from 'app/Admin/Reclaim/add-reclaim/add-reclaim.component';
-import { Credit } from 'app/models/Debiteur';
+import { Credit } from 'app/models/Credit';
 import { HttpClient } from '@angular/common/http';
 import { ImageFraisComponent } from '../image-frais/image-frais.component';
 import { DetailsFraisComponent } from '../details-frais/details-frais.component';
@@ -108,7 +108,6 @@ searchOperationById(creditId: number): void {
       );
     }
 
-
   }
   
 
@@ -145,19 +144,7 @@ searchOperationById(creditId: number): void {
 
 
 
-  debs: any[]; 
-  fetchDebiteurs(id:number): void {
-    this.http.get<any>('http://localhost:8083/bna/deb/'+id)
-      .subscribe(
-        (response) => {
-          this.debs = response;
-          console.log('Result:', this.debs);
-        },
-        (error) => {
-          console.error('Error fetching:', error);
-        }
-      );
-  }
+
 
 }
 

@@ -5,9 +5,7 @@ import {UpdatedepartementComponent} from './updatedepartement/updatedepartement.
 import {AddDepartementComponent} from './add-departement/add-departement.component';
 
 const routes: Routes = [
-  {path:'', component:AlldepartementComponent},
-  {path:'update/:id', component:UpdatedepartementComponent},
-  {path:'add', component:AddDepartementComponent},
+
 
 
 ];

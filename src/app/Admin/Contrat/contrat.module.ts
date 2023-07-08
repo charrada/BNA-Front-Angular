@@ -27,6 +27,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { UpdateComponent } from './update/update.component';
 import { FilterPipe } from './Pipes/filter.pipe';
+import { AllFraisAdminComponent } from './all-frais-admin/all-frais-admin.component';
+import { EtatFraisAdminComponent } from './etat-frais-admin/etat-frais-admin.component';
 
 
 
@@ -37,7 +39,9 @@ import { FilterPipe } from './Pipes/filter.pipe';
       AddComponent,
       ConfirmationDialogComponent,
       UpdateComponent,
-      FilterPipe
+      FilterPipe,
+      AllFraisAdminComponent,
+      EtatFraisAdminComponent
   ],
     imports: [
         ContratRoutingModule,

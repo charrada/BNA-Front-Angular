@@ -18,7 +18,8 @@ export class AddFraisComponent implements OnInit {
     montant: 0,
     idAgent: 0,
     dateF: new Date(),
-    credit: { idCredit: 0 },
+    credit: { idCredit: 0,montant:0,
+    debiteur:{idDebiteur:0,nom:null,prenom:null} },
     imageUrl: null,
     etatOperation:"Encore",
     typePaiementOperation: { 

@@ -48,6 +48,13 @@ const routes: Routes = [
           import("./Admin/Frais/frais.module").then((m) => m.FraisModule),},],
   },
 
+
+ 
+
+
+
+
+
   {path: "Departement",component: AdminLayoutComponent,children: [{path: "",loadChildren: () =>
           import("./Admin/departement/departement.module").then((m) => m.DepartementModule),},],
   },

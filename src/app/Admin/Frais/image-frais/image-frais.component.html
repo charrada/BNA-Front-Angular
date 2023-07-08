@@ -5,6 +5,9 @@
 
     <img [src]="retrievedImage" *ngIf="retrievedImage" alt="Retrieved Image">
 
+    <p>Detected Text:</p>
+    <pre>{{ detectedText }}</pre>
+
   </div>
 
   <div   *ngIf="operation.typePaiementOperation.idType === 2">

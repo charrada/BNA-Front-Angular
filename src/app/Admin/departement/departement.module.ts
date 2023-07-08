@@ -13,7 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   declarations: [
     AlldepartementComponent,
     AddDepartementComponent,
-    UpdatedepartementComponent
+    UpdatedepartementComponent 
   ],
     imports: [
         CommonModule,

@@ -1,0 +1,20 @@
+<mat-dialog-content    (keyup.escape)="closeDialog()">
+
+<p>Changer l'Etat de loperation ({{operation.etatOperation}})</p>
+<div>
+    <mat-form-field appearance="fill">
+      <mat-label>Type de Frais</mat-label>
+      <mat-select [(ngModel)]="selectedEtat" >
+        <mat-option value="Encore">Encore</mat-option>
+        <mat-option value="succe">succe</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" (click)="updateEtat()">Changer</button>
+  <button mat-button color="warn" (click)="closeDialog()">Annuler</button>
+</mat-dialog-actions>
