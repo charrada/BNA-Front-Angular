@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DetailsFraisComponent } from 'app/Admin/Frais/details-frais/details-frais.component';
 import { operation } from 'app/models/Operation';
 
 @Component({
@@ -15,7 +16,7 @@ export class EtatFraisAdminComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private http: HttpClient,
+    private http: HttpClient,    private dialog: MatDialog,
     public dialogRef: MatDialogRef<EtatFraisAdminComponent>
   ) {
     this.operation = data.operation;
@@ -64,6 +65,11 @@ export class EtatFraisAdminComponent implements OnInit {
       );
   }
 
+  openDetailsPopup(operation: operation): void {
+    this.dialog.open(DetailsFraisComponent, {
+      data: { operation: operation }
+    });
+  }
 
 
   updateEtat(): void {

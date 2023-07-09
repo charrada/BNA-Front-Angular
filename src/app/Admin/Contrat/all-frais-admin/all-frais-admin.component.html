@@ -107,42 +107,49 @@
                 <th>Debiteur</th>
                 <th>Montant Credit (Totale)</th>
                 <th>Montant Operation</th>
-                <th>Etat operation</th>
-                <th>Details</th>
+                <th>Type Paiement</th>
+               
+                <th>ID Agent</th>
+                <th>Date</th>
+                <th>Type Operation</th>
+                <th>Type de paiement </th>
                 <th>Actions</th>
                 </thead>
-                <tbody >
-
-                <tr *ngFor="let op of operation" >
-                    <td>{{op.idOperation}}</td>
-                    <td>{{op.credit.debiteur.nom}} {{op.credit.debiteur.prenom}}</td>
-                    <td>{{op.credit.montant}}</td>
-                    <td>{{op.montant}}</td>
-                    <td  >{{op.etatOperation}}</td>
-                    <td  >Details</td>
-
-                    <td class="td-actions text-left">
+                <tbody>
+                    <tr *ngFor="let op of operation">
+                      <td>{{ op.idOperation }}</td>
+                      <td>{{ op.credit.debiteur.nom }} {{ op.credit.debiteur.prenom }}</td>
+                      <td>{{ op.credit.montant }}</td>
+                      <td>{{ op.montant }}</td>
+                      <td>{{ op.etatOperation }}</td>
+                      
+                      <td>{{ op.idAgent }}</td>
+                      <td>{{ op.dateF | date }}</td>
+                      <td>
+                        <button mat-raised-button (click)="openDetailsPopup(op)">{{ op.detailsOperation.typeDetails }}</button>
+                      </td>
+                      <td>
+                        <ng-container *ngIf="op.typePaiementOperation.idType !==3">
+                          <button mat-raised-button (click)="openImagePopup(op)">{{ op.typePaiementOperation.nomType }}</button>
+                        </ng-container>
+                        <ng-container *ngIf="op.typePaiementOperation.idType ==3">
+                          {{ op.typePaiementOperation.nomType }}
+                        </ng-container>
+                      </td>
+                      <td class="td-actions text-left">
                         <button mat-raised-button type="button" (click)="openEtatPopup(op)" matTooltip="Edit Contrat" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon">
-                            <i class="material-icons">edit</i>
+                          <i class="material-icons">edit</i>
+                        </button>
+                      
+                        <button mat-raised-button type="button" (click)="exportDataToPDF(op.idOperation)" matTooltip="Extract Contrat" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon">
+                            <span class="material-icons">picture_as_pdf</span>
                           </button>
                           
-                        <button mat-raised-button type="button" matTooltip="Remove Contrat" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon"
-                        >
-                            <i class="material-icons">close</i>
-                        </button>
-                        <button mat-raised-button type="button"  matTooltip="Extract Contrat" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon">
-                            <span class="material-icons">
-                                picture_as_pdf
-                            </span>
-                        </button>
-                        <button mat-raised-button type="button"  matTooltip="Print Contrat" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon">
-                            <i class="fa fa-print" aria-hidden="true"></i>                        </button>
-                        <button mat-raised-button type="button"  matTooltip="Expand Contrat" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon">
-                            <i class="fa fa-arrows-alt" aria-hidden="true"></i>                       </button>
-                    </td>
-                </tr>
-
-                </tbody>
+                       
+                    
+                      </td>
+            </tr>
+                  </tbody>
 
             </table>
 
