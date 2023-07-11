@@ -5,8 +5,12 @@
 
     <img [src]="retrievedImage" *ngIf="retrievedImage" alt="Retrieved Image">
 
-    <p>Detected Text:</p>
-    <pre>{{ detectedText }}</pre>
+    <p>Detected Text ai !!:</p>
+    <div *ngIf="fileContent">
+      <h2>Text Content:</h2>
+      <pre>{{ fileContent }}</pre>
+    </div>
+    
 
   </div>
 

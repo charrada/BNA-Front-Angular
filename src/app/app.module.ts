@@ -45,7 +45,7 @@ import { TachesFrontComponent } from './taches-front/taches-front.component';
 
 import { FraisModule } from './Admin/Frais/frais.module';
 import { DepartementModule } from './Admin/departement/departement.module';
-import { ContratModule } from './Admin/Contrat/contrat.module';
+import { ContratModule } from './Admin/FraisAdmin/contrat.module';
 import { ReclaimModule } from './Admin/Reclaim/reclaim.module';
 
 @NgModule({

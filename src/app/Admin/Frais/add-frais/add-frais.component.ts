@@ -15,11 +15,11 @@ export class AddFraisComponent implements OnInit {
   creditId: number;
   operation: operation = {
     idOperation: null,
-    montant: 0,
-    idAgent: 0,
+    montant: null,
+    idAgent: null,
     dateF: new Date(),
     credit: { idCredit: 0,montant:0,
-    debiteur:{idDebiteur:0,nom:null,prenom:null} },
+    debiteur:{idDebiteur:0,nom:null,prenom:null,} },
     imageUrl: null,
     etatOperation:"Encore",
     typePaiementOperation: { 
@@ -43,8 +43,29 @@ export class AddFraisComponent implements OnInit {
 
 
 
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.operation[fieldName];
+    return field === null || field === undefined || field === '';
+  }
+ typeP: String ;
+  //ajouter tous les controle
+  isFormValid(): boolean {
+    if(this.typeP=="Espece"){
+        return (
+    
+      this.isFieldInvalid('numC') ||
+      this.isFieldInvalid('ribV') 
+    );
 
+    }
 
+    return (
+      !this.isFieldInvalid('montant') &&
+      !this.isFieldInvalid('idAgent') 
+      
+    );
+  }
+  
 
   selectedType: string;
 
@@ -95,15 +116,11 @@ export class AddFraisComponent implements OnInit {
     );
   }
   
-  
-  isFormValid(): boolean {
-    return !this.isFieldInvalid('montant') && !this.isFieldInvalid('idAgent') && !this.isFieldInvalid('description');
-  }
 
-  isFieldInvalid(fieldName: string): boolean {
-    const field = this.operation[fieldName];
-    return field === null || field === undefined || field === '';
-  }
+
+  
+
+
 
   closeDialog(): void {
     this.dialogRef.close();

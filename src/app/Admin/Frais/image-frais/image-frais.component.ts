@@ -26,11 +26,30 @@ export class ImageFraisComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImage(this.operation.idOperation);
+    this.getTextContent(this.operation.idOperation); // Call the function to fetch the text content
+
   }
+
 
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+  fileContent: string | undefined; // Variable to store the text content
+
+  getTextContent(idOp: number) {
+    // Make a request to Spring Boot to get the text content of the file.
+    this.http.get('http://localhost:8083/bna/image/getT/' + idOp, { responseType: 'text' })
+      .subscribe(
+        content => {
+          this.fileContent = content;
+        },
+        error => {
+          console.error('Error fetching text content:', error);
+        }
+      );
+  }
+
 
   selectedFile: File;
   base64Data: any;

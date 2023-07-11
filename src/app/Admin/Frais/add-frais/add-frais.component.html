@@ -1,18 +1,20 @@
-<mat-dialog-content  class="bigger-dialog-content"  (keyup.escape)="closeDialog()">
+<mat-dialog-content (keyup.escape)="closeDialog()">
   <p>Ajouter Frais au crédit de ID: {{ creditId }}</p>
   <h2>Ajouter Frais</h2>
 
   <div>
     <mat-form-field>
       <mat-label>Montant:</mat-label>
-      <input matInput type="number" [(ngModel)]="operation.montant" name="montant" required>
+      <input matInput type="number" [(ngModel)]="operation.montant" name="montant" required
+        [class.ng-invalid]="isFieldInvalid('montant')">
       <mat-error *ngIf="isFieldInvalid('montant')">Montant est requis.</mat-error>
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
       <mat-label>ID Agent:</mat-label>
-      <input matInput type="number" [(ngModel)]="operation.idAgent" name="idAgent" required>
+      <input matInput type="number" [(ngModel)]="operation.idAgent" name="idAgent" required
+        [class.ng-invalid]="isFieldInvalid('idAgent')">
       <mat-error *ngIf="isFieldInvalid('idAgent')">ID Agent est requis.</mat-error>
     </mat-form-field>
   </div>
@@ -35,7 +37,7 @@
       <mat-label>N° Affaire:</mat-label>
       <input matInput type="text" [(ngModel)]="operation.detailsOperation.numAffaireAuxiliaire">
     </mat-form-field>
-  
+
     <mat-form-field appearance="fill">
       <mat-label>Type Auxiliaire</mat-label>
       <mat-select [(ngModel)]="selectedTypeAux" (ngModelChange)="typeAux(selectedTypeAux)">
@@ -46,14 +48,14 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Liste des {{selectedTypeAux}}</mat-label>
-      <mat-select [(ngModel)]="operation.detailsOperation.idAuxOperation"> 
+      <mat-select [(ngModel)]="operation.detailsOperation.idAuxOperation">
         <mat-option *ngFor="let tAux of tAuxs" [value]="tAux.idAux">
           {{ tAux.idAux }}- {{ tAux.nomAux }} {{ tAux.prenAux }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  
+
   <div *ngIf="selectedType === 'Timbrage'">
     <mat-form-field appearance="fill">
       <mat-label>Timbrage</mat-label>
@@ -63,15 +65,13 @@
       </mat-select>
     </mat-form-field>
   </div>
-  
-  
 
   <div *ngIf="selectedType === 'Enregistrement'">
     <mat-form-field>
       <mat-label>N° Piece:</mat-label>
       <input matInput type="text" [(ngModel)]="operation.detailsOperation.numPieceEnregistrement">
     </mat-form-field>
-  
+
     <mat-form-field appearance="fill">
       <mat-label>Type Piece</mat-label>
       <mat-select [(ngModel)]="operation.detailsOperation.typePieceEnregistrement">
@@ -82,12 +82,10 @@
       </mat-select>
     </mat-form-field>
   </div>
-  
-  
 
   <mat-form-field appearance="fill">
     <mat-label>Type de paiement</mat-label>
-    <mat-select [(ngModel)]="operation.typePaiementOperation.idType" name="paymentType">
+    <mat-select [(ngModel)]="operation.typePaiementOperation.idType" [(ngModel)]="typeP" name="paymentType">
       <mat-option *ngFor="let type of typePaiementOperations" [value]="type.idType">{{ type.nomType }}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -101,9 +99,14 @@
       <br>
       <mat-form-field>
         <mat-label>Numéro de Chéque:</mat-label>
-        <input matInput type="number" [(ngModel)]="operation.numC" name="numC" required>
+        <input matInput type="number" [(ngModel)]="operation.numC" name="numC" required
+          [class.ng-invalid]="isFieldInvalid('numC')">
+   
+  
         <mat-error *ngIf="isFieldInvalid('numC')">Numéro de Chéque est requis.</mat-error>
+      
       </mat-form-field>
+      
     </div>
     <br><br>
   </div>
@@ -114,7 +117,8 @@
       <br>
       <mat-form-field>
         <mat-label>Numéro de Rib:</mat-label>
-        <input matInput type="number" [(ngModel)]="operation.ribV" name="ribV" required>
+        <input matInput type="number" [(ngModel)]="operation.ribV" name="ribV" required
+          [class.ng-invalid]="isFieldInvalid('ribV')">
         <mat-error *ngIf="isFieldInvalid('ribV')">Numéro de Rib est requis.</mat-error>
       </mat-form-field>
     </div>
@@ -123,17 +127,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button color="primary" (click)="addOperation()">Ajouter</button>
+  <button mat-button color="primary" (click)="addOperation()" [disabled]="!isFormValid()">Ajouter</button>
   <button mat-button color="warn" (click)="closeDialog()">Annuler</button>
 </mat-dialog-actions>
-
-
-
-
-
-
-
-
-
-
-

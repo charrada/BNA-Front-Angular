@@ -5,10 +5,10 @@ import {Observable} from "rxjs";
 import {Reclamation} from "../../../models/Reclamation";
 import {formatDate} from "@angular/common";
 import {PageEvent} from "@angular/material/paginator";
-import {ConfirmDialogModel} from "../../Contrat/confirmation-dialog/confirmation-dialog.component";
+import {ConfirmDialogModel} from "../../FraisAdmin/confirmation-dialog/confirmation-dialog.component";
 import {ConfirmDialogComponent} from "../../EquipesManagment/confirm-dialog/confirm-dialog.component";
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
-import {AddComponent} from '../../Contrat/add/add.component';
+import {AddComponent} from '../../FraisAdmin/add/add.component';
 import {AddReclaimComponent} from '../add-reclaim/add-reclaim.component';
 
 @Component({

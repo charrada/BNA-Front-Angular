@@ -34,8 +34,8 @@ const routes: Routes = [
 
 
 
-  {path: "Contrat",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
-          import("./Admin/Contrat/contrat.module").then((m) => m.ContratModule),},],
+  {path: "Admin",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
+          import("./Admin/FraisAdmin/contrat.module").then((m) => m.ContratModule),},],
   },
   {path: "Reclamation",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
           import("./Admin/Reclaim/reclaim.module").then((m) => m.ReclaimModule),},],

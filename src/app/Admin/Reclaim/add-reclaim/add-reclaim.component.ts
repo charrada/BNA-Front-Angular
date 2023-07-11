@@ -4,7 +4,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Reclamation} from '../../../models/Reclamation';
 import {ReclaimService} from '../../../Services/ReclaimService/reclaim.service';
-import {ListOfContratsComponent} from '../../Contrat/list-of-contrats/list-of-contrats.component';
+import {ListOfContratsComponent} from '../../FraisAdmin/list-of-contrats/list-of-contrats.component';
 
 @Component({
   selector: 'app-add-reclaim',

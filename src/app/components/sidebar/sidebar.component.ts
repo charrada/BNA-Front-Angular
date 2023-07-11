@@ -10,6 +10,8 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
 
   { path: "/Frais", title: "Frais", icon: "attach_money", class: "" },
+    { path: "/Admin", title: "Admin", icon: "person", class: "" },
+
  /* { path: "/dashboard", title: "Dashboard", icon: "dashboard", class: "" },
 
 

@@ -8,10 +8,10 @@ import { AllFraisAdminComponent } from './all-frais-admin/all-frais-admin.compon
 import { EtatFraisAdminComponent } from './etat-frais-admin/etat-frais-admin.component';
 
 const routes: Routes=[
-  {path:"", component:ListOfContratsComponent},
+  {path:"t", component:ListOfContratsComponent},
     {path:"addP", component:AddComponent},
     {path:"dialog", component: ConfirmationDialogComponent},
-    {path:"f", component: AllFraisAdminComponent},
+    {path:"", component: AllFraisAdminComponent},
     {path:"t", component: EtatFraisAdminComponent}
 
 ]
