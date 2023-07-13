@@ -12,7 +12,7 @@ import { DetailsThreadComponent } from "./Admin/Forum/Thread/details-thread/deta
 import { TachesFrontComponent } from "./taches-front/taches-front.component";
 
 const routes: Routes = [
-  {path: "",redirectTo: "dashboard",pathMatch: "full",},
+  {path: "",redirectTo: "Login",pathMatch: "full",},
   {path: "Details",component: AdminLayoutComponent,children: [{path: "",loadChildren: ()=>
     import("./Admin/DetailEquipesManagement/detail-equipe-admin/detail-equipe-admin.module")
         .then((m) => m.DetailEquipeAdminModule),},],

@@ -28,6 +28,7 @@ export class AddFraisComponent implements OnInit {
     },
     numC: null,
     ribV: null,
+    vu:0,
     typeOperation: "Frais",
     detailsOperation: { 
       idDetails:null,

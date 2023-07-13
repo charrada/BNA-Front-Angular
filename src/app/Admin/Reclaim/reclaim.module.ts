@@ -26,11 +26,13 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AddReclaimComponent } from './add-reclaim/add-reclaim.component';
 import { UpdateReclaimComponent } from './update-reclaim/update-reclaim.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
 @NgModule({
-  declarations: [ListOfReclaimsComponent, AddReclaimComponent, UpdateReclaimComponent],
+  declarations: [ListOfReclaimsComponent, AddReclaimComponent, UpdateReclaimComponent, LoginComponent, RegisterComponent],
   imports: [
     ReclaimRoutingModule, CommonModule,
     HttpClientModule,

@@ -23,6 +23,7 @@ export class operation {
 
 
     numC: number;
+    vu:number;
   
 
  
