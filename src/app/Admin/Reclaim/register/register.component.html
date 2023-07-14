@@ -1,1 +1,42 @@
-<p>register works!</p>
+<form (ngSubmit)="register()">
+    <div>
+      <label>
+        Nom:
+        <input type="text" [(ngModel)]="registrationData.nom" name="nom" required>
+      </label>
+    </div>
+    <div>
+      <label>
+        Prénom:
+        <input type="text" [(ngModel)]="registrationData.prenom" name="prenom" required>
+      </label>
+    </div>
+    <div>
+      <label>
+        Type de compte:
+        <input type="text" [(ngModel)]="registrationData.typeAccount" name="typeAccount" required>
+      </label>
+    </div>
+    <div>
+      <label>
+        Nom d'utilisateur:
+        <input type="text" [(ngModel)]="registrationData.username" name="username" required>
+      </label>
+    </div>
+    <div>
+      <label>
+        Email:
+        <input type="email" [(ngModel)]="registrationData.email" name="email" required>
+      </label>
+    </div>
+    <div>
+      <label>
+        Mot de passe:
+        <input type="password" [(ngModel)]="registrationData.password" name="password" required>
+      </label>
+    </div>
+    <input type="file" (change)="onFileChanged($event)">
+
+    <button type="submit">Register</button>
+  </form>
+  

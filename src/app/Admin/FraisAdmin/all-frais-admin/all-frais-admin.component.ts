@@ -21,10 +21,65 @@ export class AllFraisAdminComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.fetchOperations(this.selectedEtat);
+   this.countNot();
   }
 
+  onOptionSelected() {this.updateVu();
 
+    this.fetchAllNot();
+
+
+  }
+
+  operation2: operation; 
+  fetchAllNot(): void {
+    this.http.get<any>('http://localhost:8083/bna/operation/admin/not/Frais/')
+      .subscribe(
+        (response) => {
+          this.operation2 = response;
+          console.log('Result:', this.operation2);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
+
+  updateVu() {
+    const vu = 1;
+    const url = `http://localhost:8083/bna/operation/admin/update/${vu}`;
+  
+    this.http.put(url, {}).subscribe(
+      () => {
+        console.log('Update successful');
+        this.nb=0;
+      },
+      (error) => {
+        console.error('Update failed:', error);
+      }
+    );
+  }
+
+  nb: number; 
+  countNot(): void {
+    const typeOperation = 'Frais'; // Replace with the actual type operation value
+     // Replace with the actual etat operation value
+    const vu = 0; // Replace with the desired vu value
+  
+    this.http.get<number>(`http://localhost:8083/bna/operation/admin/count/${typeOperation}/${vu}`)
+      .subscribe(
+        (count) => {
+          this.nb = count;
+          console.log('Count:', this.nb);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
+  
   @Input()ctrct:any;
   contractForm: FormGroup;
 

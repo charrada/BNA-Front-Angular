@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { OperationService } from 'app/Services/OperationService/operation.service';
+import { operation } from 'app/models/Operation';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { AddReclaimComponent } from 'app/Admin/Reclaim/add-reclaim/add-reclaim.component';
+import { Credit } from 'app/models/Credit';
 
 @Component({
   selector: 'app-login',
