@@ -3,9 +3,12 @@
     <a href="" class="simple-text">
       <div class="logo-img">
         <img src="/assets/img/bna_logo.png" style="width: 110px; height: auto;" />
-    </div>
+    
+      </div>
     <br>
   <br> 
+
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  🌳{{loginData.username}}</h4>
     </a>
 </div>
 <div class="sidebar-wrapper">
@@ -33,12 +36,31 @@
         </li>
     </ul>
   </div>
+
     <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}}</p>
+      <li routerLinkActive="active"  nav-item>
+
+        <a  *ngIf="login.typeAccount=='Admin'" class="nav-link" routerLink="/Admin">
+          <i class="material-icons">person</i>
+          <p>Admin</p>
+      </a>
+</li>
+        <li routerLinkActive="active"  nav-item>
+            <a class="nav-link" routerLink="/Frais">
+                <i class="material-icons">attach_money</i>
+                <p>Frais</p>
             </a>
+        
         </li>
+
     </ul>
-</div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Déconnexion
+      </button>
+    </div>
+    
+      </div>

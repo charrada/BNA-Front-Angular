@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -15,24 +16,43 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(location: Location, private http: HttpClient,  private element: ElementRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
     }
 
-    ngOnInit(){
-      this.listTitles = ROUTES.filter(listTitle => listTitle);
-      const navbar: HTMLElement = this.element.nativeElement;
-      this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-      this.router.events.subscribe((event) => {
-        this.sidebarClose();
-         var $layer: any = document.getElementsByClassName('close-layer')[0];
-         if ($layer) {
-           $layer.remove();
-           this.mobile_menu_visible = 0;
-         }
-     });
-    }
+
+    loginData:any;
+
+    ngOnInit() {
+
+        const loginDataString = localStorage.getItem('loginData');
+        if (loginDataString) {
+          this.loginData = JSON.parse(loginDataString);
+          console.log(this.loginData);
+          // Utilisez les données de connexion comme vous le souhaitez
+    
+    this.getPDP(this.loginData.username)
+          this.listTitles = ROUTES.filter(listTitle => listTitle);
+          const navbar: HTMLElement = this.element.nativeElement;
+          this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+          this.router.events.subscribe((event) => {
+            this.sidebarClose();
+             var $layer: any = document.getElementsByClassName('close-layer')[0];
+             if ($layer) {
+               $layer.remove();
+               this.mobile_menu_visible = 0;
+             }
+         });
+    
+    
+    
+    
+        } else {
+        this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
+        }
+    
+      }
 
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -122,4 +142,29 @@ export class NavbarComponent implements OnInit {
       }
      
     }
+
+
+    selectedFile: File;
+    base64Data: any;
+    retrieveResonse: any;
+    message: string;
+    retrievedImage: any; // Declare retrievedImage property
+
+    getPDP(username: string) {
+      this.http.get('http://localhost:8083/bna/pdp/get/' + username)
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = this.retrieveResonse.picByte;
+            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+    
+          }
+        );
+    }
+
 }
+
+
+
+
+

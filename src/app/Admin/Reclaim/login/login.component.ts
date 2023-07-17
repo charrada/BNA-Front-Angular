@@ -31,8 +31,10 @@ export class LoginComponent implements OnInit {
     
       this.http.post<any>('http://localhost:8083/bna/account/login', loginData).subscribe(
         (response) => {
-          this.router.navigate(['/Frais']);
-
+          localStorage.setItem('loginData', JSON.stringify(loginData));
+          this.router.navigateByUrl('/Frais');
+    
+  
           console.log('Login successful!');
           // Handle successful login
         },
@@ -43,5 +45,6 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  
     
 }

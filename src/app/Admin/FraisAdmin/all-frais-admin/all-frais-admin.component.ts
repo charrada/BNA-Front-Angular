@@ -6,11 +6,11 @@ import { ContratService } from 'app/Services/ContratService/contrat.service';
 import { OperationService } from 'app/Services/OperationService/operation.service';
 import { Contrat } from 'app/models/Contrat';
 import { operation } from 'app/models/Operation';
-import { Router } from '@angular/router';
 import { EtatFraisAdminComponent } from '../etat-frais-admin/etat-frais-admin.component';
 import { ImageFraisComponent } from 'app/Admin/Frais/image-frais/image-frais.component';
 import { Credit } from 'app/models/Credit';
 import { DetailsFraisComponent } from 'app/Admin/Frais/details-frais/details-frais.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-frais-admin',
@@ -20,11 +20,33 @@ import { DetailsFraisComponent } from 'app/Admin/Frais/details-frais/details-fra
 export class AllFraisAdminComponent implements OnInit {
 
 
-  ngOnInit(): void {
+  constructor(private cService: ContratService, private _formBuilder:FormBuilder,
+    private operationService: OperationService,private router: Router,  
+    private dialog: MatDialog,
+    private http: HttpClient ,private route: ActivatedRoute// Inject HttpClient here
 
-    this.fetchOperations(this.selectedEtat);
-   this.countNot();
-  }
+    ) { }
+    loginData: any; // Ajoutez cette ligne pour déclarer la propriété loginData
+    
+    
+    ngOnInit(): void {
+      const loginDataString = localStorage.getItem('loginData');
+      if (loginDataString) {
+        this.loginData = JSON.parse(loginDataString);
+        console.log(this.loginData);
+        // Utilisez les données de connexion comme vous le souhaitez
+  
+        this.fetchOperations(this.selectedEtat);
+        this.countNot();
+      } else {
+      this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
+      }
+    }
+    
+    
+    
+
+  
 
   onOptionSelected() {this.updateVu();
 
@@ -82,13 +104,6 @@ export class AllFraisAdminComponent implements OnInit {
   
   @Input()ctrct:any;
   contractForm: FormGroup;
-
-  constructor(private cService: ContratService, private _formBuilder:FormBuilder,
-    private operationService: OperationService,private router: Router,  
-    private dialog: MatDialog,
-    private http: HttpClient // Inject HttpClient here
-
-    ) { }
 
     openEtatPopup(operation: operation): void {
       this.dialog.open(EtatFraisAdminComponent, {
@@ -164,8 +179,7 @@ export class AllFraisAdminComponent implements OnInit {
           );
       }
   
-      
-   
+ 
     NomPren:string;
     //recherche des credit avec debiteur id
     searchCreditByDebId(): void {

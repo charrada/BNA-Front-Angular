@@ -27,14 +27,24 @@ export class AllFraisComponent implements OnInit {
   constructor(
     private operationService: OperationService,
     private dialog: MatDialog,
-    private http: HttpClient // Inject HttpClient here
+    private http: HttpClient,private router: Router // Inject HttpClient here
   ) {}
 
 
+  loginData: any; // Ajoutez cette ligne pour déclarer la propriété loginData
+
   ngOnInit(): void {
- 
+    const loginDataString = localStorage.getItem('loginData');
+    if (loginDataString) {
+      this.loginData = JSON.parse(loginDataString);
+      console.log(this.loginData);
+    } else {
+      this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
+    }
   }
 
+
+  
 
 
 

@@ -1,42 +1,46 @@
-<form (ngSubmit)="register()">
-    <div>
-      <label>
-        Nom:
-        <input type="text" [(ngModel)]="registrationData.nom" name="nom" required>
-      </label>
-    </div>
-    <div>
-      <label>
-        Prénom:
-        <input type="text" [(ngModel)]="registrationData.prenom" name="prenom" required>
-      </label>
-    </div>
-    <div>
-      <label>
-        Type de compte:
-        <input type="text" [(ngModel)]="registrationData.typeAccount" name="typeAccount" required>
-      </label>
-    </div>
-    <div>
-      <label>
-        Nom d'utilisateur:
-        <input type="text" [(ngModel)]="registrationData.username" name="username" required>
-      </label>
-    </div>
-    <div>
-      <label>
-        Email:
-        <input type="email" [(ngModel)]="registrationData.email" name="email" required>
-      </label>
-    </div>
-    <div>
-      <label>
-        Mot de passe:
-        <input type="password" [(ngModel)]="registrationData.password" name="password" required>
-      </label>
-    </div>
-    <input type="file" (change)="onFileChanged($event)">
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
 
-    <button type="submit">Register</button>
-  </form>
   
+  <mat-card style="width: 300px; padding: 20px;">
+
+    <a routerLink="/Login">Login</a>
+    <mat-card-title style="text-align: center;">Register </mat-card-title>
+    
+    <form (ngSubmit)="register()">
+      <mat-form-field>
+        <input matInput placeholder="Nom" [(ngModel)]="registrationData.nom" name="nom" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Prénom" [(ngModel)]="registrationData.prenom" name="prenom" required>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder="Nom d'utilisateur" [(ngModel)]="registrationData.username" name="username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="registrationData.email" name="email" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="registrationData.password" name="password" required>
+      </mat-form-field>
+      <input type="file" (change)="onFileChanged($event)">
+     <br><br>
+          <mat-form-field >
+            <mat-label>Type Account</mat-label>
+            <mat-select [(ngModel)]="registrationData.typeAccount"  required name="typeAccount">
+              <mat-option value="Agent">Agent</mat-option>
+
+              <mat-option value="Admin">Admin</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+<br><br><br>
+<div style="display: flex; justify-content: center;">
+  <button type="submit" class="search-button">Register</button>
+
+
+</div>   
+   </form>
+  </mat-card>
+</div>

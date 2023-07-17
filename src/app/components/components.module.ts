@@ -5,13 +5,16 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MembersEquipesComponent} from '../Admin/EquipesManagment/members-equipes/members-equipes.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule,  MatButtonModule,
+    MatIconModule,
   ],
   declarations: [
     FooterComponent,

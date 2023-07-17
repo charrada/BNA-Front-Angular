@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+
 
 declare const $: any;
 declare interface RouteInfo {
@@ -11,6 +15,10 @@ export const ROUTES: RouteInfo[] = [
 
   { path: "/Frais", title: "Frais", icon: "attach_money", class: "" },
     { path: "/Admin", title: "Admin", icon: "person", class: "" },
+
+
+
+    
 
  /* { path: "/dashboard", title: "Dashboard", icon: "dashboard", class: "" },
 
@@ -47,10 +55,22 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() {}
+  constructor(private router: Router,private http: HttpClient) {}
+
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter((menuItem) => menuItem);
+
+    const loginDataString = localStorage.getItem('loginData');
+    if (loginDataString) {
+      this.loginData = JSON.parse(loginDataString);
+      console.log(this.loginData);
+      // Utilisez les données de connexion comme vous le souhaitez
+this.findAccount(this.loginData.username);
+      this.menuItems = ROUTES.filter((menuItem) => menuItem);
+    } else {
+    this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
+    }
+
   }
   isMobileMenu() {
     if ($(window).width() > 991) {
@@ -58,4 +78,29 @@ export class SidebarComponent implements OnInit {
     }
     return true;
   }
+
+ 
+
+  loginData:any;
+  logout(): void {
+    localStorage.removeItem('loginData');
+    this.loginData = null;
+    this.router.navigateByUrl('/Login');
+  }
+
+
+  login: any; 
+  findAccount(username:string): void {
+    this.http.get<any>('http://localhost:8083/bna/account/findByUsername/'+username)
+      .subscribe(
+        (response) => {
+          this.login = response;
+          console.log('Result:', this.login);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
+
 }
