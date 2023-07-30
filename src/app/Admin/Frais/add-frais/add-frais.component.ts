@@ -5,6 +5,7 @@ import { AuxiliaireOperation } from 'app/models/AuxiliaireOperation';
 import { operation } from 'app/models/Operation';
 import { TypePaiementOperation } from 'app/models/TypePaiementOperation';
 import { OperationService } from 'app/Services/OperationService/operation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-frais',
@@ -61,8 +62,7 @@ export class AddFraisComponent implements OnInit {
     }
 
     return (
-      !this.isFieldInvalid('montant') &&
-      !this.isFieldInvalid('idAgent') 
+      !this.isFieldInvalid('montant')
       
     );
   }
@@ -75,6 +75,7 @@ export class AddFraisComponent implements OnInit {
     public dialogRef: MatDialogRef<AddFraisComponent>,
     private operationService: OperationService,
     private http: HttpClient // Add this line
+    ,private router: Router
   ) {
     console.log(data.creditId);
     this.creditId = data.creditId;
@@ -84,8 +85,9 @@ export class AddFraisComponent implements OnInit {
   typePaiementOperations: TypePaiementOperation[] = [];
 
 
+
+loginData:any;
   ngOnInit(): void {
-    
     this.operationService.findAllTypePaiementOperation().subscribe(
       (typePaiementOperations) => {
         this.typePaiementOperations = typePaiementOperations;
@@ -96,9 +98,19 @@ export class AddFraisComponent implements OnInit {
         console.error('Error fetching type paiement operations:', error);
       }
     );
+    const loginDataString = localStorage.getItem('loginData');
+    if (loginDataString) {
+      this.loginData = JSON.parse(loginDataString);
+      this.findAccount(this.loginData.username);
+      this.operation.idAgent=this.login.idAccount
+ 
 
-
+      console.log(this.loginData);
+    } else {
+      this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
+    }
   }
+
 
   addOperation(): void {
     // Call the addOperation method of the OperationService
@@ -194,6 +206,21 @@ export class AddFraisComponent implements OnInit {
   }
   //----------------------
 
+
+  login: any; 
+  findAccount(username:string): void {
+    this.http.get<any>('http://localhost:8083/bna/account/findByUsername/'+username)
+      .subscribe(
+        (response) => {
+          this.login = response;
+          console.log('Result:', this.login);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
+  
 
 }
 

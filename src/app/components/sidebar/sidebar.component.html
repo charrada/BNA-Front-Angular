@@ -1,14 +1,17 @@
 
-<div class="logo">
-    <a href="" class="simple-text">
-      <div class="logo-img">
-        <img src="/assets/img/bna_logo.png" style="width: 110px; height: auto;" />
-    
-      </div>
-    <br>
-  <br> 
 
-  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  🌳{{loginData.username}}</h4>
+<div class="logo">
+<br><br>
+    <a href="" class="simple-text">
+      <div class="logo-container">
+        <div class="logo-img">
+          <img src="/assets/img/bna_logo.png" style="width: 120px; height: auto;" />
+        </div>
+      </div>
+      
+    <br><br>
+  
+
     </a>
 </div>
 <div class="sidebar-wrapper">
@@ -25,7 +28,6 @@
       </span>
     </form>
     <ul class="nav navbar-nav nav-mobile-menu">
-      <p>waaa</p>
         <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">
                 <i class="material-icons">person</i>
@@ -38,13 +40,7 @@
   </div>
 
     <ul class="nav">
-      <li routerLinkActive="active"  nav-item>
 
-        <a  *ngIf="login.typeAccount=='Admin'" class="nav-link" routerLink="/Admin">
-          <i class="material-icons">person</i>
-          <p>Admin</p>
-      </a>
-</li>
         <li routerLinkActive="active"  nav-item>
             <a class="nav-link" routerLink="/Frais">
                 <i class="material-icons">attach_money</i>
@@ -52,15 +48,14 @@
             </a>
         
         </li>
+        <li routerLinkActive="active"  nav-item>
 
+          <a  *ngIf="login.typeAccount=='Admin'" class="nav-link" routerLink="/Admin">
+            <i class="material-icons">person</i>
+            <p>Admin</p>
+        </a>
+  </li>
     </ul>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <div class="button-container">
-      <button mat-raised-button color="primary" (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        Déconnexion
-      </button>
-    </div>
+  
     
       </div>

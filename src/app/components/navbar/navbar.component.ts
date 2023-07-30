@@ -22,7 +22,13 @@ export class NavbarComponent implements OnInit {
     }
 
 
+    logout(): void {
+      localStorage.removeItem('loginData');
+      this.loginData = null;
+      this.router.navigateByUrl('/Login');
+    }
     loginData:any;
+
 
     ngOnInit() {
 
@@ -162,6 +168,8 @@ export class NavbarComponent implements OnInit {
         );
     }
 
+
+    
 }
 
 

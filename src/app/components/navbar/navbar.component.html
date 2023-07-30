@@ -1,12 +1,145 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-  <div class="container-fluid">
+  <div
+    class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+  >
+    <div class="container-fluid">
       <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:void(0)">
-              <div class="profile-image-container">
-                <img class="profile-image" [src]="retrievedImage" *ngIf="retrievedImage" alt="Retrieved Image">
-
-              </div>
-          </a>
+        <a class="navbar-brand" href="javascript:void(0)"></a>
       </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="navbar-nav">
+          <div class="container py-2">
+            <!------->
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
+                <ul class="list-unstyled">
+                  <li class="dropdown ml-2">
+                    <a
+                      class="rounded-circle"
+                      href="#"
+                      role="button"
+                      id="dropdownUser"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <div
+                        class="avatar avatar-md avatar-indicators avatar-online"
+                      >
+                        <img
+                           class="profile-image"
+                [src]="retrievedImage"
+                *ngIf="retrievedImage"
+                alt="Retrieved Image"
+                
+                
+                          class="rounded-circle"
+                        />
+                      </div>
+                    </a>
+
+                    <div
+                      class="dropdown-menu pb-2"
+                      aria-labelledby="dropdownUser"
+                    >
+                      <div class="dropdown-item">
+                        <div class="d-flex py-2">
+                          <div
+                            class="avatar avatar-md avatar-indicators avatar-online"
+                          >
+                            <img
+                            class="profile-image"
+                            [src]="retrievedImage"
+                            *ngIf="retrievedImage"
+                            alt="Retrieved Image"
+                              class="rounded-circle"
+                            />
+                          </div>
+                          <div class="ml-3 lh-1">
+                            <h5 class="mb-0">{{loginData.username}}</h5>
+                            <p class="mb-0">annette@company.com</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                      <div class="">
+                        <ul class="list-unstyled">
+                        
+
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              href="@@webRoot/pages/profile-edit.html"
+                            >
+                              <span class="mr-1">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  class="feather feather-user"
+                                >
+                                  <path
+                                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                                  ></path>
+                                  <circle cx="12" cy="7" r="4"></circle>
+                                </svg> </span
+                              >Profile
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              href="@@webRoot/pages/student-subscriptions.html"
+                              ><span class="mr-2">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="14"
+                                  height="14"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  class="feather feather-star"
+                                >
+                                  <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                                  ></polygon></svg></span
+                              >Subscription
+                            </a>
+                          </li>
+                        
+                        </ul>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                      <li rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" (click)="logout()">
+                        <a class="dropdown-item" href="#!">
+                          <span class="mr-2">
+                        </span
+                          >Déconnexion
+                        </a>
+                      </li>
+
+                   
+
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+  
+        </ul>
+      </div>
+    </div>
   </div>
+
 </nav>

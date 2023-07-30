@@ -38,6 +38,7 @@ export class AllFraisComponent implements OnInit {
     if (loginDataString) {
       this.loginData = JSON.parse(loginDataString);
       console.log(this.loginData);
+      this.getPDP(this.loginData.username);
     } else {
       this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
     }
@@ -80,25 +81,23 @@ searchOperationById(creditId: number): void {
 
 
   
-  selectedFile: File;
-  retrievedImage: any;
-  base64Data: any;
-  retrieveResonse: any;
-  message: string;
+selectedFile: File;
+base64Data: any;
+retrieveResonse: any;
+message: string;
+retrievedImage: any; // Declare retrievedImage property
 
-     //Gets called when the user clicks on retieve image button to get the image from back end
-     getImage(idOp :number) {
-      //Make a call to Sprinf Boot to get the Image Bytes.
-      this.http.get('http://localhost:8083/bna/image/get/' +idOp)
-        .subscribe(
-          res => {
-            this.retrieveResonse = res;
-            this.base64Data = this.retrieveResonse.picByte;
-            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          }
-        );
-    }
+getPDP(username: string) {
+  this.http.get('http://localhost:8083/bna/pdp/get/' + username)
+    .subscribe(
+      res => {
+        this.retrieveResonse = res;
+        this.base64Data = this.retrieveResonse.picByte;
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
+      }
+    );
+}
     
  
   NomPren:string;

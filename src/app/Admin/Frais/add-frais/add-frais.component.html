@@ -13,9 +13,7 @@
   <div>
     <mat-form-field>
       <mat-label>ID Agent:</mat-label>
-      <input matInput type="number" [(ngModel)]="operation.idAgent" name="idAgent" required
-        [class.ng-invalid]="isFieldInvalid('idAgent')">
-      <mat-error *ngIf="isFieldInvalid('idAgent')">ID Agent est requis.</mat-error>
+      <input matInput type="number" [value]="login.idAccount" readonly>
     </mat-form-field>
   </div>
 

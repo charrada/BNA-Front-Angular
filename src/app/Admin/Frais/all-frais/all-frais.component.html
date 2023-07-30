@@ -1,136 +1,94 @@
-
-<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
-  <div class="container-fluid">
-      <div class="navbar-wrapper">
-        <a class="navbar-brand" href="javascript:void(0)"></a>
-      </div>
-      <div class="collapse navbar-collapse justify-content-end" id="navigation">
-      
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0)">
-                      <i class="material-icons">dashboard</i>
-                      <p>
-                          <span class="d-lg-none d-md-block">Stats</span>
-                      </p>
-                  </a>
-              </li>
-          
-              <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0)">
-                      <i class="material-icons">person</i>
-                      <p>
-                          <span class="d-lg-none d-md-block">Account</span>
-                      </p>
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-</nav>
+<br />
+<br /><br />
 
 
+<div>
 
-<br><br>
+  <br>
 
+  <mat-divider></mat-divider>
+  <br />
+  <br /><br />
 
-
-<br>
-<br>
-<mat-divider></mat-divider>
-<br>
-
-  <br><br>
-
-
-
-
-
-
-
-<div class="container">
-   
-  
-
-  
-    
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Credit N°</th>
-        <th>Id Credit</th>
-        <th>Montant</th>
-        <th>
-          <div>
-            <input type="text" [(ngModel)]="searchId" placeholder="Enter debiteur ID..." (keyup.enter)="searchCreditByDebId()" class="search-input">
-            <button (click)="searchCreditByDebId()" class="search-button">Trouver 🔍</button>
-          </div>
-        </th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let credit of credits; let i = index">
+  <div class="container">
+    <table class="table">
+      <thead>
         <tr>
-          <td>
-            <ng-container *ngIf="i === 0">
-              <p [style.color]="'green'">🦋 {{ credit.debiteur.nom }} {{ credit.debiteur.prenom }}</p>
-              <br><br><br><br>
-            </ng-container>
-          </td>
-          
-          
-          <td>{{ i + 1 }} </td>
-          <td>{{ credit.idCredit }}</td>
-          <td> {{ credit.montant }}
-          
-          </td>
-          <td>
-            <div class="search-container">
-              <button mat-raised-button color="warn" (click)="searchOperationById(credit.idCredit)">Frais 🔍</button>
+          <th></th>
+          <th>Credit N°</th>
+          <th>Id Credit</th>
+          <th>Montant</th>
+          <th>
+            <div>
+              <input
+                type="text"
+                [(ngModel)]="searchId"
+                placeholder="Enter debiteur ID..."
+                (keyup.enter)="searchCreditByDebId()"
+                class="search-input"
+              />
+              <button (click)="searchCreditByDebId()" class="search-button">
+                Trouver 🔍
+              </button>
             </div>
-          </td>
-          <td>
-            <div class="text-right">
-              <button class="btn btn-primary" (click)="openAjout(credit.idCredit)">➕ Ajouter Frais</button>
-            </div>
-          </td>
+          </th>
+          <th></th>
         </tr>
-      </ng-container>
-    </tbody>
-  </table>
-  
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let credit of credits; let i = index">
+          <tr>
+            <td>
+              <ng-container *ngIf="i === 0">
+                <p [style.color]="'green'">
+                  🦋 {{ credit.debiteur.nom }} {{ credit.debiteur.prenom }}
+                </p>
+                <br /><br /><br /><br />
+              </ng-container>
+            </td>
 
- </div>
-  
-  
-  
-  <br><br><br><br>
+            <td>{{ i + 1 }}</td>
+            <td>{{ credit.idCredit }}</td>
+            <td>{{ credit.montant }}</td>
+            <td>
+              <div class="search-container">
+                <button
+                  mat-raised-button
+                  color="warn"
+                  (click)="searchOperationById(credit.idCredit)"
+                >
+                  Frais 🔍
+                </button>
+              </div>
+            </td>
+            <td>
+              <div class="text-right">
+                <button
+                  class="btn btn-primary"
+                  (click)="openAjout(credit.idCredit)"
+                >
+                  ➕ Ajouter Frais
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
 
+  <br /><br /><br /><br />
 
   <mat-divider></mat-divider>
 
-
-
-
-
-
-<div class="main-content">
-  
-
- 
-
-  
-
-
-
-
-    <div  *ngIf="operations && operations.length > 0 && creditId !== null">
-        <div class="card">
+  <div class="main-content">
+    <div *ngIf="operations && operations.length > 0 && creditId !== null">
+      <div class="card">
         <div class="card-header card-header-danger">
-          <h4 class="card-title">Frais</h4> 
-          <p class="card-category">Tous les Frais de credit de ID: {{this.creditId}} </p>
+          <h4 class="card-title">Frais</h4>
+          <p class="card-category">
+            Tous les Frais de credit de ID: {{ this.creditId }}
+          </p>
         </div>
         <div class="card-body" id="sectionToPrint">
           <div class="table-responsive">
@@ -141,59 +99,53 @@
                 <th>ID Agent</th>
                 <th>Date</th>
                 <th>Type Operation</th>
-                <th>Type de paiement </th>
+                <th>Type de paiement</th>
                 <th>Etat</th>
-
               </thead>
               <tbody>
-                <tr *ngFor="let op of operations | paginate: { itemsPerPage: 10, currentPage: p }">
-               
+                <tr
+                  *ngFor="
+                    let op of operations
+                      | paginate : { itemsPerPage: 10, currentPage: p }
+                  "
+                >
                   <td>{{ op.idOperation }}</td>
                   <td>{{ op.montant }}</td>
                   <td>{{ op.idAgent }}</td>
                   <td>{{ op.dateF | date }}</td>
-                  <td><button mat-raised-button (click)="openDetailsPopup(op)" >{{ op.detailsOperation.typeDetails }}  </button>
+                  <td>
+                    <button mat-raised-button (click)="openDetailsPopup(op)">
+                      {{ op.detailsOperation.typeDetails }}
+                    </button>
                   </td>
 
-                 
                   <td>
-                    <ng-container *ngIf="op.typePaiementOperation.idType !==3">
-
-                      <button mat-raised-button (click)="openImagePopup(op)">{{ op.typePaiementOperation.nomType }}</button>
-
+                    <ng-container *ngIf="op.typePaiementOperation.idType !== 3">
+                      <button mat-raised-button (click)="openImagePopup(op)">
+                        {{ op.typePaiementOperation.nomType }}
+                      </button>
                     </ng-container>
 
-
-                    <ng-container *ngIf="op.typePaiementOperation.idType ==3">
+                    <ng-container *ngIf="op.typePaiementOperation.idType == 3">
                       {{ op.typePaiementOperation.nomType }}
                     </ng-container>
                   </td>
 
-                 <td>                      {{ op.etatOperation }}                </td>
-
-
-                
+                  <td>{{ op.etatOperation }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
         </div>
-        
-    <!-- Pagination controls -->
-    <div class="pagination-controls" *ngIf="operations && operations.length > 0">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        <!-- Pagination controls -->
+        <div
+          class="pagination-controls"
+          *ngIf="operations && operations.length > 0"
+        >
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
       </div>
-      </div>
-      
-      
     </div>
-
-
- 
-  
-    
+  </div>
 </div>
-
-
-

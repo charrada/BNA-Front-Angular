@@ -11,6 +11,7 @@ import { ImageFraisComponent } from 'app/Admin/Frais/image-frais/image-frais.com
 import { Credit } from 'app/models/Credit';
 import { DetailsFraisComponent } from 'app/Admin/Frais/details-frais/details-frais.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-all-frais-admin',
@@ -29,18 +30,55 @@ export class AllFraisAdminComponent implements OnInit {
     loginData: any; // Ajoutez cette ligne pour déclarer la propriété loginData
     
     
+    cEncore:number;
+    cSucce:number;
+    cTot:number=0;
     ngOnInit(): void {
+
+      this.fetchOperations(this.selectedEtat);
+      this.countNot();
+      this.countOperation("Encore")
+.subscribe(
+  (count) => {
+    this.cEncore = count;
+    this.cTot+=count;
+
+    console.log('Count:', this.cEncore);
+  },
+  (error) => {
+    console.error('Error fetching:', error);
+  }
+  
+);
+this.countOperation("Succe")
+.subscribe(
+  (count) => {
+    this.cSucce = count;
+    this.cTot+=count;
+
+    console.log('Count:', this.cSucce);
+  },
+  (error) => {
+    console.error('Error fetching:', error);
+  }
+  
+);
+  
       const loginDataString = localStorage.getItem('loginData');
       if (loginDataString) {
         this.loginData = JSON.parse(loginDataString);
         console.log(this.loginData);
-        // Utilisez les données de connexion comme vous le souhaitez
-  
-        this.fetchOperations(this.selectedEtat);
-        this.countNot();
+        this.findAccount(this.loginData.username);
+        this.getPDP(this.loginData.username);
+
+
+
+
       } else {
       this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
       }
+
+  
     }
     
     
@@ -48,7 +86,8 @@ export class AllFraisAdminComponent implements OnInit {
 
   
 
-  onOptionSelected() {this.updateVu();
+  onOptionSelected() {
+    this.updateVu();
 
     this.fetchAllNot();
 
@@ -101,7 +140,6 @@ export class AllFraisAdminComponent implements OnInit {
         }
       );
   }
-  
   @Input()ctrct:any;
   contractForm: FormGroup;
 
@@ -124,8 +162,13 @@ export class AllFraisAdminComponent implements OnInit {
   
   
 
-
-  
+    countOperation(type: string): Observable<number> {
+      const typeOperation = 'Frais'; // Replace with the actual type operation value
+    
+      return this.http.get<number>(`http://localhost:8083/bna/operation/count/admin/${typeOperation}/${type}`);
+    }
+    
+    
   
   
   
@@ -159,26 +202,24 @@ export class AllFraisAdminComponent implements OnInit {
   }
   
   
-    
-    selectedFile: File;
-    retrievedImage: any;
-    base64Data: any;
-    retrieveResonse: any;
-    message: string;
   
-       //Gets called when the user clicks on retieve image button to get the image from back end
-       getImage(idOp :number) {
-        //Make a call to Sprinf Boot to get the Image Bytes.
-        this.http.get('http://localhost:8083/bna/image/get/' +idOp)
-          .subscribe(
-            res => {
-              this.retrieveResonse = res;
-              this.base64Data = this.retrieveResonse.picByte;
-              this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-            }
-          );
-      }
+  selectedFile: File;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
+  retrievedImage: any; // Declare retrievedImage property
   
+  getPDP(username: string) {
+    this.http.get('http://localhost:8083/bna/pdp/get/' + username)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+  
+        }
+      );
+  }
  
     NomPren:string;
     //recherche des credit avec debiteur id
@@ -201,7 +242,19 @@ export class AllFraisAdminComponent implements OnInit {
     
   
   
-  
+    login: any; 
+  findAccount(username:string): void {
+    this.http.get<any>('http://localhost:8083/bna/account/findByUsername/'+username)
+      .subscribe(
+        (response) => {
+          this.login = response;
+          console.log('Result:', this.login);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
   
   
   
