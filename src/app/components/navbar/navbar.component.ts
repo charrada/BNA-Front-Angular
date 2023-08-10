@@ -36,6 +36,8 @@ export class NavbarComponent implements OnInit {
         if (loginDataString) {
           this.loginData = JSON.parse(loginDataString);
           console.log(this.loginData);
+          this.findAccount(this.loginData.username);
+
           // Utilisez les données de connexion comme vous le souhaitez
     
     this.getPDP(this.loginData.username)
@@ -167,6 +169,20 @@ export class NavbarComponent implements OnInit {
           }
         );
     }
+
+        login: any; 
+  findAccount(username:string): void {
+    this.http.get<any>('http://localhost:8083/bna/account/findByUsername/'+username)
+      .subscribe(
+        (response) => {
+          this.login = response;
+          console.log('Result:', this.login);
+        },
+        (error) => {
+          console.error('Error fetching:', error);
+        }
+      );
+  }
 
 
     
