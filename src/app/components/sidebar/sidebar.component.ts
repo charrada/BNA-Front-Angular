@@ -65,11 +65,11 @@ export class SidebarComponent implements OnInit {
       this.loginData = JSON.parse(loginDataString);
       console.log(this.loginData);
       // Utilisez les données de connexion comme vous le souhaitez
-this.findAccount(this.loginData.username);
       this.menuItems = ROUTES.filter((menuItem) => menuItem);
     } else {
     this.router.navigateByUrl('/Login'); // Rediriger vers la page de login
     }
+    this.findAccount(this.loginData.username);
 
   }
   isMobileMenu() {
